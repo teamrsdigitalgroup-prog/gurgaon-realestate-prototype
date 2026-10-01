@@ -2,7 +2,7 @@
 
 import { MessageCircle, Phone } from "lucide-react";
 import { useBroker } from "@/components/broker/broker-provider";
-import { Button } from "@/components/ui/button";
+import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
 export function ContactActions({
@@ -24,27 +24,28 @@ export function ContactActions({
 
   return (
     <div className={cn("grid gap-2.5 sm:grid-cols-2", className)}>
-      <Button
-        asChild
-        size={size}
-        className="bg-brand text-brand-ink hover:bg-brand-strong"
+      <a
+        href={broker.telUrl}
+        className={cn(
+          buttonVariants({ size }),
+          "h-11 bg-brand text-brand-ink hover:bg-brand-strong",
+        )}
       >
-        <a href={broker.telUrl}>
-          <Phone className="size-4" aria-hidden />
-          Call {broker.name}
-        </a>
-      </Button>
-      <Button
-        asChild
-        size={size}
-        variant="outline"
-        className="border-brand-border text-brand hover:bg-brand-soft hover:text-brand-strong"
+        <Phone className="size-4" aria-hidden />
+        Call {broker.name}
+      </a>
+      <a
+        href={whatsappUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        className={cn(
+          buttonVariants({ size, variant: "outline" }),
+          "h-11 border-brand-border text-brand hover:bg-brand-soft hover:text-brand-strong",
+        )}
       >
-        <a href={whatsappUrl} target="_blank" rel="noopener noreferrer">
-          <MessageCircle className="size-4" aria-hidden />
-          WhatsApp {broker.name}
-        </a>
-      </Button>
+        <MessageCircle className="size-4" aria-hidden />
+        WhatsApp {broker.name}
+      </a>
     </div>
   );
 }

@@ -69,14 +69,9 @@ export function Gallery({
         </span>
 
         <Dialog>
-          <DialogTrigger asChild>
-            <button
-              type="button"
-              className="absolute bottom-3 right-3 inline-flex items-center gap-1.5 rounded-full bg-black/65 px-3 py-1.5 text-xs font-medium text-white backdrop-blur transition hover:bg-black/80"
-            >
-              <Expand className="size-3.5" aria-hidden />
-              View full size
-            </button>
+          <DialogTrigger className="absolute bottom-3 right-3 inline-flex items-center gap-1.5 rounded-full bg-black/65 px-3 py-1.5 text-xs font-medium text-white backdrop-blur transition hover:bg-black/80">
+            <Expand className="size-3.5" aria-hidden />
+            View full size
           </DialogTrigger>
           <DialogContent className="max-w-5xl overflow-hidden p-0 sm:max-w-5xl">
             <DialogTitle className="sr-only">{title} — full size photo</DialogTitle>

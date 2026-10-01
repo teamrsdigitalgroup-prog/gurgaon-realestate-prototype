@@ -6,10 +6,9 @@ import { useEffect, useState } from "react";
 import { BrokerLink } from "@/components/broker/broker-link";
 import { BrokerWordmark } from "@/components/broker/broker-logo";
 import { useBroker } from "@/components/broker/broker-provider";
-import { Button } from "@/components/ui/button";
+import { buttonVariants } from "@/components/ui/button";
 import {
   Sheet,
-  SheetClose,
   SheetContent,
   SheetHeader,
   SheetTitle,
@@ -37,8 +36,6 @@ export function Navbar() {
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
-
-  useEffect(() => setOpen(false), [pathname]);
 
   return (
     <header
@@ -89,26 +86,26 @@ export function Navbar() {
         </ul>
 
         <div className="ml-auto flex items-center gap-2 lg:ml-3">
-          <Button
-            asChild
-            className="hidden bg-brand text-brand-ink shadow-sm transition hover:bg-brand-strong sm:inline-flex"
+          <a
+            href={broker.telUrl}
+            className={cn(
+              buttonVariants(),
+              "hidden h-10 max-w-[16rem] bg-brand px-4 text-brand-ink shadow-sm transition hover:bg-brand-strong sm:inline-flex",
+            )}
           >
-            <a href={broker.telUrl}>
-              <Phone className="size-4" aria-hidden />
-              Contact {broker.name}
-            </a>
-          </Button>
+            <Phone className="size-4 shrink-0" aria-hidden />
+            <span className="truncate">Contact {broker.name}</span>
+          </a>
 
           <Sheet open={open} onOpenChange={setOpen}>
-            <SheetTrigger asChild>
-              <Button
-                variant="outline"
-                size="icon"
-                className="lg:hidden"
-                aria-label="Open menu"
-              >
-                <Menu className="size-5" />
-              </Button>
+            <SheetTrigger
+              aria-label="Open menu"
+              className={cn(
+                buttonVariants({ variant: "outline", size: "icon" }),
+                "size-10 lg:hidden",
+              )}
+            >
+              <Menu className="size-5" aria-hidden />
             </SheetTrigger>
             <SheetContent side="right" className="w-[min(88vw,20rem)]">
               <SheetHeader>
@@ -119,27 +116,27 @@ export function Navbar() {
               <ul className="mt-2 flex flex-col px-4">
                 {links.map((link) => (
                   <li key={link.href}>
-                    <SheetClose asChild>
-                      <BrokerLink
-                        href={link.href}
-                        className="flex items-center justify-between border-b border-border/60 py-3.5 text-base font-medium text-foreground"
-                      >
-                        {link.label}
-                      </BrokerLink>
-                    </SheetClose>
+                    <BrokerLink
+                      href={link.href}
+                      onClick={() => setOpen(false)}
+                      className="flex items-center justify-between border-b border-border/60 py-3.5 text-base font-medium text-foreground"
+                    >
+                      {link.label}
+                    </BrokerLink>
                   </li>
                 ))}
               </ul>
               <div className="mt-auto flex flex-col gap-2 p-4">
-                <Button
-                  asChild
-                  className="w-full bg-brand text-brand-ink hover:bg-brand-strong"
+                <a
+                  href={broker.telUrl}
+                  className={cn(
+                    buttonVariants(),
+                    "h-11 w-full bg-brand text-brand-ink hover:bg-brand-strong",
+                  )}
                 >
-                  <a href={broker.telUrl}>
-                    <Phone className="size-4" aria-hidden />
-                    Call {broker.name}
-                  </a>
-                </Button>
+                  <Phone className="size-4 shrink-0" aria-hidden />
+                  <span className="truncate">Call {broker.name}</span>
+                </a>
                 <p className="text-center text-xs text-muted-foreground">
                   {broker.phoneDisplay}
                 </p>

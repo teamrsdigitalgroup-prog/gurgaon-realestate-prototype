@@ -2,7 +2,7 @@
 
 import { Search, SlidersHorizontal, X } from "lucide-react";
 import { usePathname, useRouter } from "next/navigation";
-import { useEffect, useState, useTransition } from "react";
+import { useState, useTransition } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -51,9 +51,15 @@ export function ListingFilters({
   const pathname = usePathname();
   const [isPending, startTransition] = useTransition();
   const [query, setQuery] = useState(values.q);
+  const [syncedQuery, setSyncedQuery] = useState(values.q);
   const [expanded, setExpanded] = useState(false);
 
-  useEffect(() => setQuery(values.q), [values.q]);
+  // Keep the input in step with the URL when it changes elsewhere (back button,
+  // a locality link, "clear filters") without reaching for an effect.
+  if (syncedQuery !== values.q) {
+    setSyncedQuery(values.q);
+    setQuery(values.q);
+  }
 
   const budgets = mode === "sale" ? SALE_BUDGETS : RENT_BUDGETS;
   const activeCount = FILTER_KEYS.filter((key) => values[key] !== "").length;
@@ -263,7 +269,10 @@ function FilterSelect({
       <Label className="text-[11px] font-semibold uppercase tracking-[0.1em] text-muted-foreground">
         {label}
       </Label>
-      <Select value={value} onValueChange={onChange}>
+      <Select
+        value={value}
+        onValueChange={(next) => onChange(next ?? ALL)}
+      >
         <SelectTrigger className="h-11 w-full">
           <SelectValue placeholder={label} />
         </SelectTrigger>
