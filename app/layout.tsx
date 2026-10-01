@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { Geist_Mono, Inter, Playfair_Display } from "next/font/google";
-import { Toaster } from "@/components/ui/sonner";
 import { DEFAULT_BROKER_NAME, SITE_CITY } from "@/config";
 import "./globals.css";
 
@@ -39,7 +38,6 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     >
       <body className="flex min-h-full flex-col">
         {children}
-        <Toaster position="top-center" />
       </body>
     </html>
   );
