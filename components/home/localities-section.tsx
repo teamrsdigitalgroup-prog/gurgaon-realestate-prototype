@@ -2,10 +2,19 @@ import { ArrowRight } from "lucide-react";
 import Image from "next/image";
 import { BrokerLink } from "@/components/broker/broker-link";
 import { Section, SectionHeading } from "@/components/section";
-import { localities, listingsInLocality } from "@/data";
+import { localities, properties } from "@/data";
 
 export function LocalitiesSection() {
-  const featured = localities.slice(0, 8);
+  // These tiles link to /buy, so only count — and only show — localities that
+  // actually have something for sale. Nobody should land on an empty grid.
+  const saleCounts = new Map<string, number>();
+  for (const property of properties) {
+    saleCounts.set(
+      property.localitySlug,
+      (saleCounts.get(property.localitySlug) ?? 0) + 1,
+    );
+  }
+  const featured = localities.filter((l) => saleCounts.has(l.slug)).slice(0, 8);
 
   return (
     <Section tone="soft" id="localities">
@@ -26,7 +35,7 @@ export function LocalitiesSection() {
 
       <ul className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
         {featured.map((locality) => {
-          const count = listingsInLocality(locality.slug).length;
+          const count = saleCounts.get(locality.slug) ?? 0;
           return (
             <li key={locality.slug}>
               <BrokerLink

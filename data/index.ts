@@ -38,10 +38,6 @@ export function similarListings(listing: Listing, limit = 4): Listing[] {
   return [...sameLocality, ...sameSize].slice(0, limit);
 }
 
-export function listingsInLocality(slug: string): Listing[] {
-  return allListings.filter((l) => l.localitySlug === slug);
-}
-
 export function propertyTypes(listings: Listing[]): string[] {
   return [...new Set(listings.map((l) => l.type))].sort();
 }

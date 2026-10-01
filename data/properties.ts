@@ -3,7 +3,6 @@ import { nearbyFor } from "./nearby";
 import type { SaleListing, SoldListing } from "./types";
 
 type SaleSeed = Omit<SaleListing, "listingType" | "images" | "nearby"> & {
-  imageKind?: "home" | "tower" | "office";
   seed: number;
 };
 
@@ -70,7 +69,6 @@ const seeds: SaleSeed[] = [
     verified: true,
     featured: true,
     seed: 4,
-    imageKind: "tower",
     description:
       "The Magnolias remains the address people name when they want to signal they have arrived in Gurgaon. This fourteenth-floor apartment looks straight down the DLF Golf Course, has a private elevator lobby, and comes fully fitted with imported kitchen and wardrobes. Three reserved basement parking slots and full staff quarters included.",
     amenities: [...LUXURY, "Clubhouse", "Gymnasium", "Banquet Hall"],
@@ -110,7 +108,6 @@ const seeds: SaleSeed[] = [
     rera: "HRERA-GGM-2018-094",
     verified: true,
     seed: 7,
-    imageKind: "tower",
     description:
       "A high-floor Belaire apartment with the long balcony that made these towers popular. Cross-ventilated, freshly painted, and handed over with wardrobes, air conditioners and modular kitchen in place. Walking distance to the Sector 54 Chowk metro and the DLF Golf Club gate.",
     amenities: [...CLUB, "Tennis Court", "Squash Court", "Servant Quarters", "Piped Gas"],
@@ -151,7 +148,6 @@ const seeds: SaleSeed[] = [
     verified: true,
     featured: true,
     seed: 11,
-    imageKind: "tower",
     description:
       "Park Place is the most rented society on Golf Course Road for a reason: seven acres of lawns, a proper club, and Sector 53 metro at the gate. This ninth-floor apartment faces the central green rather than the road, so it stays quiet through peak hours.",
     amenities: [...CLUB, "Amphitheatre", "Yoga Deck", "Piped Gas", "Multipurpose Hall"],
@@ -191,7 +187,6 @@ const seeds: SaleSeed[] = [
     rera: "HRERA-GGM-2019-311",
     verified: true,
     seed: 2,
-    imageKind: "tower",
     description:
       "A duplex on the top two floors of Victory Valley with a 600 sq ft private terrace overlooking the Aravalli ridge. Interiors were completed two years ago by a Delhi studio and are being sold as they stand, including the lighting and loose furniture.",
     amenities: [...LUXURY, "Private Terrace", "Clubhouse", "Infinity Pool", "Home Automation"],
@@ -231,7 +226,6 @@ const seeds: SaleSeed[] = [
     rera: "HRERA-GGM-2018-157",
     verified: true,
     seed: 15,
-    imageKind: "tower",
     description:
       "Central Park Resorts runs like a hotel: housekeeping, concierge and a 60,000 sq ft clubhouse are part of the maintenance. A sensible entry point for an investor who wants a tenant-ready unit on Sohna Road's better side.",
     amenities: [...MIDRANGE, "Concierge Desk", "Housekeeping", "Mini Theatre", "Guest Rooms"],
@@ -271,7 +265,6 @@ const seeds: SaleSeed[] = [
     verified: true,
     featured: true,
     seed: 20,
-    imageKind: "tower",
     description:
       "Palm Gardens gets the basics right: low density, real lawns and a club that is actually maintained. This eleventh-floor unit has the study that later towers dropped, and looks over the lawn instead of the parking ramp.",
     amenities: [...MIDRANGE, "Badminton Court", "Amphitheatre", "Piped Gas", "Library"],
@@ -311,7 +304,6 @@ const seeds: SaleSeed[] = [
     rera: "HRERA-GGM-2018-402",
     verified: true,
     seed: 9,
-    imageKind: "tower",
     description:
       "One of the larger floor plates on Sohna Road at a price that no Golf Course Road tower can match. Belmonte is a low-density project of only six towers, and this corner unit gets light on three sides through the day.",
     amenities: [...CLUB, "Squash Court", "Jogging Track", "Piped Gas", "Community Hall"],
@@ -351,7 +343,6 @@ const seeds: SaleSeed[] = [
     rera: "HRERA-GGM-2020-118",
     verified: true,
     seed: 13,
-    imageKind: "tower",
     description:
       "A straightforward, well-built 3 BHK for a family buying their first home in Gurgaon. Tulip Ivory has covered parking, a working club and a school inside walking distance, and the sector road connects to Sohna Road in three minutes.",
     amenities: [...MIDRANGE, "Convenience Store", "Day-Care Centre", "Fire Safety"],
@@ -391,7 +382,6 @@ const seeds: SaleSeed[] = [
     rera: "HRERA-GGM-2017-063",
     verified: true,
     seed: 6,
-    imageKind: "tower",
     description:
       "Hamilton Court has the tree cover that new sectors will need twenty years to grow. The apartment has been renovated with new flooring and bathrooms, and the sale includes the transferable club membership that residents value most.",
     amenities: [...CLUB, "Tennis Court", "Billiards Room", "Library", "Mature Tree Cover"],
@@ -470,7 +460,6 @@ const seeds: SaleSeed[] = [
     rera: "HRERA-GGM-2021-046",
     verified: true,
     seed: 22,
-    imageKind: "tower",
     description:
       "New Gurgaon at a price that still makes sense. Vatika India Next is a working township with its own school, market square and road network, and the NH-48 junction is under ten minutes away.",
     amenities: [...MIDRANGE, "Township Market", "School Inside Township", "Shuttle Service"],
@@ -509,7 +498,6 @@ const seeds: SaleSeed[] = [
     rera: "HRERA-GGM-2020-201",
     verified: true,
     seed: 25,
-    imageKind: "tower",
     description:
       "Mahindra builds to a tighter specification than most developers in this belt, and it shows in the lift lobbies and the landscaping. This tenth-floor apartment overlooks the internal park and gets morning light in all three bedrooms.",
     amenities: [...MIDRANGE, "Senior Citizen Deck", "Cycle Track", "Organic Garden"],
@@ -550,7 +538,6 @@ const seeds: SaleSeed[] = [
     verified: true,
     featured: true,
     seed: 27,
-    imageKind: "tower",
     description:
       "Sobha's concrete quality is the reason buyers pay a premium on this corridor, and Sobha City is the flagship on Dwarka Expressway. Booked at launch pricing with two years of payments already made; the balance can be taken over on a construction-linked plan.",
     amenities: [...MIDRANGE, "Clubhouse (35,000 sq ft)", "Sky Lounge", "Retail Plaza", "EV Charging"],
@@ -590,7 +577,6 @@ const seeds: SaleSeed[] = [
     rera: "HRERA-GGM-2021-133",
     verified: true,
     seed: 1,
-    imageKind: "tower",
     description:
       "Emerald Bay was one of the first projects on the expressway to actually finish, which means a functioning club and grown-in landscaping instead of promises. Four bedrooms, a servant room and three balconies across 2,750 sq ft.",
     amenities: [...CLUB, "Servant Quarters", "Sky Deck", "Indoor Games", "Piped Gas"],
@@ -630,7 +616,7 @@ const seeds: SaleSeed[] = [
     rera: "HRERA-GGM-2017-119",
     verified: true,
     featured: true,
-    seed: 15,
+    seed: 5,
     description:
       "A corner villa inside Nirvana Country with a front lawn, rear service court and a terrace on the second level. The township has its own school, plaza and two clubs, and a single gate controls everything that comes in.",
     amenities: [
@@ -767,8 +753,7 @@ const seeds: SaleSeed[] = [
     parking: 4,
     rera: "HRERA-GGM-2018-505",
     verified: true,
-    seed: 2,
-    imageKind: "office",
+    seed: 10,
     description:
       "A fitted-out floor plate inside DLF Cyber City with 42 workstations, three cabins and a boardroom already in place. Sold with the fit-out, four reserved parking bays and a tenant in place until 2027 at ₹165 per sq ft.",
     amenities: [
@@ -817,7 +802,6 @@ const seeds: SaleSeed[] = [
     rera: "HRERA-GGM-2018-611",
     verified: true,
     seed: 12,
-    imageKind: "office",
     description:
       "Ground-floor frontage on MG Road with 22 feet of glass facing the main carriageway, four hundred metres from MG Road metro station. Currently on a food-and-beverage licence with an exhaust shaft already sanctioned.",
     amenities: [
@@ -886,13 +870,108 @@ const seeds: SaleSeed[] = [
       { label: "Total buildable (S+4)", areaSqft: 6480 },
     ],
   },
+  {
+    id: "phase-2-3bhk-builder-floor",
+    title: "3 BHK builder floor a walk from Cyber Hub",
+    society: "U-Block Builder Floors",
+    localitySlug: "dlf-phase-2",
+    type: "Builder Floor",
+    bhk: 3,
+    bathrooms: 3,
+    balconies: 2,
+    areaSqft: 2100,
+    carpetAreaSqft: 1740,
+    price: 32500000,
+    status: "Ready to Move",
+    possession: "Immediate",
+    ageYears: 7,
+    furnishing: "Semi-Furnished",
+    facing: "East",
+    floor: "2 of 4",
+    parking: 2,
+    rera: "HRERA-GGM-2020-311",
+    verified: true,
+    featured: false,
+    seed: 21,
+    description:
+      "An independent second floor on a quiet U-Block street, which is the trade DLF Phase 2 lets you make: you walk to Cyber Hub in twelve minutes but sleep without the main-road noise. Only four apartments in the building, so there is no society politics and no monthly club charge. Stilt parking for two cars and a separate service stair.",
+    amenities: [
+      "Covered Parking",
+      "Power Backup",
+      "Modular Kitchen",
+      "Piped Gas",
+      "Intercom",
+      "Private Terrace Access",
+      "Lift",
+      "Vaastu Compliant",
+    ],
+    highlights: [
+      "Twelve-minute walk to Cyber Hub and DLF Phase 2 rapid metro",
+      "Only four apartments in the building, no club or society charges",
+      "Stilt parking for two cars plus a separate service staircase",
+    ],
+    floorPlan: [
+      { label: "Living & dining", areaSqft: 480 },
+      { label: "Master bedroom", areaSqft: 290 },
+      { label: "Bedroom 2", areaSqft: 230 },
+      { label: "Bedroom 3", areaSqft: 200 },
+      { label: "Kitchen & utility", areaSqft: 160 },
+      { label: "Balconies", areaSqft: 140 },
+    ],
+  },
+  {
+    id: "phase-3-2bhk-investor-floor",
+    title: "2 BHK builder floor with a sitting tenant",
+    society: "Sushant Lok Builder Floors",
+    localitySlug: "dlf-phase-3",
+    type: "Builder Floor",
+    bhk: 2,
+    bathrooms: 2,
+    balconies: 1,
+    areaSqft: 1250,
+    carpetAreaSqft: 1030,
+    price: 14800000,
+    status: "Ready to Move",
+    possession: "On tenant exit",
+    ageYears: 11,
+    furnishing: "Semi-Furnished",
+    facing: "North",
+    floor: "1 of 4",
+    parking: 1,
+    rera: "HRERA-GGM-2019-248",
+    verified: true,
+    featured: false,
+    seed: 14,
+    description:
+      "Bought as a yield play rather than a home. DLF Phase 3 is where Cyber City employees actually rent, and this floor has been tenanted continuously for nine years at a rent that has never been renegotiated downward. The current tenant is on a lease until next March and is willing to extend, so the rent starts the month you register.",
+    amenities: [
+      "Covered Parking",
+      "Power Backup",
+      "Modular Kitchen",
+      "Intercom",
+      "24x7 Water Supply",
+      "Lift",
+    ],
+    highlights: [
+      "Tenanted for nine straight years, currently at ₹42,000 a month",
+      "Four-minute auto ride to the Cyber City office blocks",
+      "Tenant willing to extend, so rental income starts at registry",
+    ],
+    floorPlan: [
+      { label: "Living & dining", areaSqft: 320 },
+      { label: "Master bedroom", areaSqft: 210 },
+      { label: "Bedroom 2", areaSqft: 160 },
+      { label: "Kitchen & utility", areaSqft: 130 },
+      { label: "Balcony", areaSqft: 70 },
+    ],
+  },
 ];
 
 export const properties: SaleListing[] = seeds.map(
-  ({ seed, imageKind, ...rest }) => ({
+  ({ seed, ...rest }) => ({
     ...rest,
     listingType: "sale",
-    images: gallery(seed, imageKind).map((id) => photo(id, 1400, 900)),
+    images: gallery(seed).map((id) => photo(id, 1400, 900)),
     nearby: nearbyFor(rest.localitySlug),
   }),
 );
@@ -908,7 +987,7 @@ export const recentlySold: SoldListing[] = [
     price: 112000000,
     soldIn: "21 days",
     dealType: "Sold",
-    image: photo("photo-1502005229762-cf1b2da7c5d6", 700, 500),
+    image: photo("photo-1580587771525-78b9dba3b914", 700, 500),
   },
   {
     id: "sold-golf-course-3bhk",
@@ -928,7 +1007,7 @@ export const recentlySold: SoldListing[] = [
     price: 89000000,
     soldIn: "52 days",
     dealType: "Sold",
-    image: photo("photo-1521783988139-89397d761dce", 700, 500),
+    image: photo("photo-1416331108676-a22ccb276e35", 700, 500),
   },
   {
     id: "sold-sohna-3bhk",
@@ -938,7 +1017,7 @@ export const recentlySold: SoldListing[] = [
     price: 17500000,
     soldIn: "18 days",
     dealType: "Sold",
-    image: photo("photo-1522771739844-6a9f6d5f14af", 700, 500),
+    image: photo("photo-1574362848149-11496d93a7c7", 700, 500),
   },
   {
     id: "rented-phase-2-2bhk",
@@ -958,6 +1037,6 @@ export const recentlySold: SoldListing[] = [
     price: 31500000,
     soldIn: "12 days",
     dealType: "Under Offer",
-    image: photo("photo-1600585152220-90363fe7e115", 700, 500),
+    image: photo("photo-1583608205776-bfd35f0d9f83", 700, 500),
   },
 ];
