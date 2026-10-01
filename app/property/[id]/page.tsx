@@ -47,11 +47,11 @@ export async function generateMetadata({
   params,
   searchParams,
 }: PageProps<"/property/[id]">): Promise<Metadata> {
-  const [{ id }, resolvedSearch] = await Promise.all([params, searchParams]);
+  const { id } = await params;
   const listing = getListing(id);
   if (!listing) return { title: "Property not found" };
 
-  const broker = resolveBroker(resolvedSearch);
+  const broker = resolveBroker(await searchParams);
   const price =
     listing.listingType === "sale"
       ? formatPrice(listing.price)
@@ -70,11 +70,13 @@ export default async function PropertyPage({
   params,
   searchParams,
 }: PageProps<"/property/[id]">) {
-  const [{ id }, resolvedSearch] = await Promise.all([params, searchParams]);
+  // Resolve the id before touching searchParams: awaiting searchParams opts the
+  // route into streaming, which commits a 200 before notFound() can run.
+  const { id } = await params;
   const listing = getListing(id);
   if (!listing) notFound();
 
-  const broker = resolveBroker(resolvedSearch);
+  const broker = resolveBroker(await searchParams);
   const locality = localityName(listing.localitySlug);
   const isSale = listing.listingType === "sale";
   const reviews = reviewsFor(listing.id);
