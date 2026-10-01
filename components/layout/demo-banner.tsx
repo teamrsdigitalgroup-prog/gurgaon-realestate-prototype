@@ -24,7 +24,7 @@ export function DemoBanner() {
           {message}
         </p>
         <a
-          href={agencyWhatsAppUrl(broker.isPlaceholder ? "" : broker.name)}
+          href={agencyWhatsAppUrl(broker.name)}
           target="_blank"
           rel="noopener noreferrer"
           className="inline-flex shrink-0 items-center gap-1.5 rounded-full bg-white px-3.5 py-1.5 text-xs font-semibold text-neutral-950 transition hover:bg-neutral-200 sm:text-sm"

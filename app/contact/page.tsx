@@ -11,7 +11,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import { SITE_CITY, SITE_REGION } from "@/config";
+import { OFFICE_ADDRESS, SITE_CITY } from "@/config";
 import { allListings, localities } from "@/data";
 import { photo } from "@/lib/images";
 import { pageTitle, resolveBroker } from "@/lib/broker";
@@ -162,7 +162,7 @@ export default async function ContactPage({
                 <span className="text-[14px]">
                   <span className="font-medium">Office</span>
                   <span className="mt-0.5 block text-muted-foreground">
-                    Golf Course Road, Sector 54, {SITE_CITY}, {SITE_REGION}
+                    {OFFICE_ADDRESS.join(", ")}
                   </span>
                 </span>
               </li>

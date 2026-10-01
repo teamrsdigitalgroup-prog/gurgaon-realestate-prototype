@@ -9,10 +9,20 @@ export const AGENCY_WHATSAPP = "91XXXXXXXXXX";
 /** Your agency, shown in the demo banner and footer credit. */
 export const AGENCY_NAME = "R&S Digital Group";
 
-/** Fallback broker identity when the URL has no ?broker= parameter. */
-export const DEFAULT_BROKER_NAME = "Your Brand Name";
-export const DEFAULT_BROKER_PHONE = "9999999999";
+/**
+ * The broker this copy of the demo is built for. A `?broker=` parameter in the
+ * URL still overrides all of it, so one deployment can serve several leads.
+ */
+export const DEFAULT_BROKER_NAME = "Accurate Vision Home";
+export const DEFAULT_BROKER_PHONE = "9315530702";
 export const DEFAULT_BRAND_COLOR = "#0e7c66";
+
+/** Office address, printed in the footer and on the contact page. */
+export const OFFICE_ADDRESS = [
+  "Shop No. 109, 2nd Floor",
+  "SS Omnia, Sector 86",
+  "Gurugram 122012, Haryana",
+] as const;
 
 /** Copy for the sticky bottom banner. `{broker}` is replaced at render time. */
 export const DEMO_BANNER_TEXT =
@@ -20,7 +30,6 @@ export const DEMO_BANNER_TEXT =
 export const DEMO_BANNER_CTA = "Get in touch";
 
 export const SITE_CITY = "Gurgaon";
-export const SITE_REGION = "Haryana, India";
 
 export function agencyWhatsAppUrl(brokerName: string) {
   const message = `Hi ${AGENCY_NAME}, I saw the demo website prototype${

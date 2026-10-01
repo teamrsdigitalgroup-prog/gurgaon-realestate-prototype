@@ -46,7 +46,7 @@ export function initialsOf(name: string): string {
     .split(/\s+/)
     .filter(Boolean);
 
-  if (words.length === 0) return "YB";
+  if (words.length === 0) return "";
   if (words.length === 1) return words[0].slice(0, 2).toUpperCase();
   return (words[0][0] + words[1][0]).toUpperCase();
 }
@@ -105,7 +105,8 @@ export function buildBroker(input: {
   return {
     name,
     isPlaceholder,
-    initials: initialsOf(name),
+    // A name of pure punctuation yields no initials, so fall back to the default.
+    initials: initialsOf(name) || initialsOf(DEFAULT_BROKER_NAME),
     phone,
     phoneDisplay: formatPhone(phone),
     color,

@@ -1,11 +1,12 @@
 "use client";
 
 import { MapPin, MessageCircle, Phone } from "lucide-react";
+import { Fragment } from "react";
 import { BrokerLink } from "@/components/broker/broker-link";
 import { BrokerLogo } from "@/components/broker/broker-logo";
 import { useBroker } from "@/components/broker/broker-provider";
 import { localities } from "@/data/localities";
-import { AGENCY_NAME, SITE_CITY, SITE_REGION } from "@/config";
+import { AGENCY_NAME, OFFICE_ADDRESS, SITE_CITY } from "@/config";
 
 const services = [
   { href: "/buy", label: "Buy a property" },
@@ -105,10 +106,12 @@ export function Footer() {
               <MapPin className="mt-0.5 size-4 shrink-0 text-brand" aria-hidden />
               <span>
                 {broker.name}
-                <br />
-                Golf Course Road, Sector 54
-                <br />
-                {SITE_CITY}, {SITE_REGION}
+                {OFFICE_ADDRESS.map((line) => (
+                  <Fragment key={line}>
+                    <br />
+                    {line}
+                  </Fragment>
+                ))}
               </span>
             </p>
             <p className="mt-4 text-sm text-muted-foreground">
