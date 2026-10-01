@@ -13,8 +13,3 @@ export function BrokerLink({
   const broker = useBroker();
   return <Link href={withBrokerParams(href, broker.params)} {...props} />;
 }
-
-export function useBrokerHref(href: string): string {
-  const broker = useBroker();
-  return withBrokerParams(href, broker.params);
-}

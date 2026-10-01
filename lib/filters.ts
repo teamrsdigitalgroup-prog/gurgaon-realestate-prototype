@@ -44,10 +44,6 @@ export function parseFilters(searchParams: RawSearchParams): FilterValues {
   };
 }
 
-export function countActiveFilters(values: FilterValues): number {
-  return FILTER_KEYS.filter((key) => values[key] !== "").length;
-}
-
 function budgetRange(mode: "sale" | "rent", index: string) {
   const buckets = mode === "sale" ? SALE_BUDGETS : RENT_BUDGETS;
   const bucket = buckets[Number(index)];

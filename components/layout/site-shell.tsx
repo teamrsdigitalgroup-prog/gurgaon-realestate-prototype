@@ -28,7 +28,7 @@ export function SiteShell({
         }
       >
         <Navbar />
-        <main className="flex-1 pb-24 sm:pb-20">{children}</main>
+        <main className="flex-1">{children}</main>
         <Footer />
         <DemoBanner />
       </div>

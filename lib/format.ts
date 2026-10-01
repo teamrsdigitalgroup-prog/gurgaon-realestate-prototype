@@ -20,27 +20,12 @@ export function formatRent(rupees: number): string {
   return `₹${rupees.toLocaleString("en-IN")}/month`;
 }
 
-/** Compact rent for tight cards: 65000 -> "₹65K/mo" */
-export function formatRentShort(rupees: number): string {
-  if (rupees >= LAKH) return `₹${trimZeros((rupees / LAKH).toFixed(2))} L/mo`;
-  if (rupees >= 1000) return `₹${trimZeros((rupees / 1000).toFixed(1))}K/mo`;
-  return `₹${rupees.toLocaleString("en-IN")}/mo`;
-}
-
 export function formatArea(sqft: number): string {
   return `${sqft.toLocaleString("en-IN")} sq ft`;
 }
 
 export function formatPricePerSqft(rupees: number, sqft: number): string {
   return `₹${Math.round(rupees / sqft).toLocaleString("en-IN")}/sq ft`;
-}
-
-export function formatDeposit(rupees: number): string {
-  return formatPrice(rupees).replace("₹", "₹");
-}
-
-export function formatBhk(bhk: number): string {
-  return bhk > 0 ? `${bhk} BHK` : "Commercial";
 }
 
 export function formatDistance(km: number): string {
