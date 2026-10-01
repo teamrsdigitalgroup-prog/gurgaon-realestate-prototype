@@ -1,4 +1,4 @@
-import { gallery, photo } from "@/lib/images";
+import { gallery, imageKindFor, photo, type ImageKind } from "@/lib/images";
 import { nearbyFor } from "./nearby";
 import type { SaleListing, SoldListing } from "./types";
 
@@ -967,14 +967,20 @@ const seeds: SaleSeed[] = [
   },
 ];
 
-export const properties: SaleListing[] = seeds.map(
-  ({ seed, ...rest }) => ({
+const heroIndex = new Map<ImageKind, number>();
+
+export const properties: SaleListing[] = seeds.map(({ seed, ...rest }) => {
+  const kind = imageKindFor(rest.type);
+  const index = heroIndex.get(kind) ?? 0;
+  heroIndex.set(kind, index + 1);
+
+  return {
     ...rest,
     listingType: "sale",
-    images: gallery(seed).map((id) => photo(id, 1400, 900)),
+    images: gallery(seed, kind, index).map((id) => photo(id, 1400, 900)),
     nearby: nearbyFor(rest.localitySlug),
-  }),
-);
+  };
+});
 
 export const featuredProperties = properties.filter((p) => p.featured);
 

@@ -10,7 +10,7 @@ export const localities: Locality[] = [
       "Gurgaon's first planned colony, full of wide tree-lined roads, independent kothis and renovated builder floors. Popular with families who want low-rise living without leaving the city centre.",
     avgPricePerSqft: 18500,
     avgRent2Bhk: 48000,
-    image: photo("photo-1449844908441-8829872d2607", 900, 700),
+    image: photo("photo-1571939228382-b2f2b585ce15", 900, 700),
     tags: ["Low-rise", "Families", "Central"],
   },
   {
@@ -32,7 +32,7 @@ export const localities: Locality[] = [
       "Dense, walkable and endlessly rented. Phase 3 is where most Cyber City professionals land first, thanks to compact builder floors and the Rapid Metro on its edge.",
     avgPricePerSqft: 14800,
     avgRent2Bhk: 42000,
-    image: photo("photo-1560184897-ae75f418493e", 900, 700),
+    image: photo("photo-1545324418-cc1a3fa10c00", 900, 700),
     tags: ["Budget", "Bachelors", "High yield"],
   },
   {
@@ -54,7 +54,7 @@ export const localities: Locality[] = [
       "The Magnolias, The Aralias, The Camellias and The Belaire — golf-facing towers with concierge service and the highest per-square-foot rates in the NCR.",
     avgPricePerSqft: 32000,
     avgRent2Bhk: 85000,
-    image: photo("photo-1502005229762-cf1b2da7c5d6", 900, 700),
+    image: photo("photo-1564013799919-ab600027ffc6", 900, 700),
     tags: ["Luxury", "Golf view", "Concierge"],
   },
   {
@@ -65,7 +65,7 @@ export const localities: Locality[] = [
       "The spine of premium Gurgaon. Signal-free from Sector 42 to Sector 56, lined with high-rise condominiums, Sector 53 metro and every major hospital chain.",
     avgPricePerSqft: 26500,
     avgRent2Bhk: 72000,
-    image: photo("photo-1545324418-cc1a3fa10c00", 900, 700),
+    image: photo("photo-1568605114967-8130f3a36994", 900, 700),
     tags: ["Signal-free", "Premium", "Metro"],
   },
   {
@@ -76,7 +76,7 @@ export const localities: Locality[] = [
       "A long stretch of mid-premium societies, schools and hospitals running south from Subhash Chowk. The sweet spot for first-time buyers who still want a clubhouse.",
     avgPricePerSqft: 12800,
     avgRent2Bhk: 32000,
-    image: photo("photo-1522771739844-6a9f6d5f14af", 900, 700),
+    image: photo("photo-1574362848149-11496d93a7c7", 900, 700),
     tags: ["Value", "First home", "Schools"],
   },
   {
@@ -87,7 +87,7 @@ export const localities: Locality[] = [
       "Hamilton Court, Heritage City and Central Park sit around a well-served market. Established, walkable and noticeably cheaper than Golf Course Road proper.",
     avgPricePerSqft: 13600,
     avgRent2Bhk: 38000,
-    image: photo("photo-1580587771525-78b9dba3b914", 900, 700),
+    image: photo("photo-1600596542815-ffad4c1539a9", 900, 700),
     tags: ["Established", "Walkable", "Markets"],
   },
   {
@@ -98,7 +98,7 @@ export const localities: Locality[] = [
       "Part of the New Gurgaon belt off NH-48. Vatika India Next and Mahindra Aura brought townships, schools and retail to what was farmland fifteen years ago.",
     avgPricePerSqft: 9600,
     avgRent2Bhk: 24000,
-    image: photo("photo-1613977257363-707ba9348227", 900, 700),
+    image: photo("photo-1600047509807-ba8f99d2cdde", 900, 700),
     tags: ["Affordable", "Townships", "NH-48"],
   },
   {
@@ -109,7 +109,7 @@ export const localities: Locality[] = [
       "DLF Cyber City and Cyber Hub hold the densest concentration of Fortune 500 offices in North India. Commercial floor plates and studios for people who refuse to commute.",
     avgPricePerSqft: 24000,
     avgRent2Bhk: 68000,
-    image: photo("photo-1486406146926-c627a92ad1ab", 900, 700),
+    image: photo("photo-1519999482648-25049ddd37b1", 900, 700),
     tags: ["Commercial", "Offices", "Nightlife"],
   },
   {
@@ -120,7 +120,7 @@ export const localities: Locality[] = [
       "Gurgaon's original retail corridor with direct Delhi Metro access. Essel Towers and The Crescent offer big old apartments; the high street offers footfall no new sector can match.",
     avgPricePerSqft: 15200,
     avgRent2Bhk: 45000,
-    image: photo("photo-1502005097973-6a7082348e28", 900, 700),
+    image: photo("photo-1600563438938-a9a27216b4f5", 900, 700),
     tags: ["Metro", "Retail", "Delhi access"],
   },
   {
@@ -131,7 +131,7 @@ export const localities: Locality[] = [
       "A self-contained villa township off Sohna Road with its own schools, market plaza and clubs. The default answer when a family wants a garden and a gate.",
     avgPricePerSqft: 16800,
     avgRent2Bhk: 55000,
-    image: photo("photo-1521783988139-89397d761dce", 900, 700),
+    image: photo("photo-1570129477492-45c003edd2be", 900, 700),
     tags: ["Villas", "Township", "Families"],
   },
   {
@@ -142,7 +142,7 @@ export const localities: Locality[] = [
       "Now that the expressway is open end to end, Sectors 102 to 113 have become the fastest-appreciating belt in Gurgaon, with brand-new towers and the shortest run to IGI Airport.",
     avgPricePerSqft: 14500,
     avgRent2Bhk: 34000,
-    image: photo("photo-1600585152220-90363fe7e115", 900, 700),
+    image: photo("photo-1600047509358-9dc75507daeb", 900, 700),
     tags: ["Appreciation", "New builds", "Airport"],
   },
   {
@@ -153,7 +153,7 @@ export const localities: Locality[] = [
       "SPR links Golf Course Extension to NH-48 past Sectors 69 to 71. Emaar, Vatika and Tulip built large gated communities here with genuine open space.",
     avgPricePerSqft: 13900,
     avgRent2Bhk: 36000,
-    image: photo("photo-1571939228382-b2f2b585ce15", 900, 700),
+    image: photo("photo-1613977257363-707ba9348227", 900, 700),
     tags: ["Gated", "Open space", "Connectivity"],
   },
 ];

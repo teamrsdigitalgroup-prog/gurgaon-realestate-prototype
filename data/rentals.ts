@@ -1,9 +1,8 @@
-import { gallery, photo } from "@/lib/images";
+import { gallery, imageKindFor, photo, type ImageKind } from "@/lib/images";
 import { nearbyFor } from "./nearby";
 import type { RentListing } from "./types";
 
 type RentSeed = Omit<RentListing, "listingType" | "images" | "nearby"> & {
-  imageKind?: "home" | "tower" | "office";
   seed: number;
 };
 
@@ -54,7 +53,6 @@ const seeds: RentSeed[] = [
     verified: true,
     featured: true,
     seed: 4,
-    imageKind: "tower",
     description:
       "A fully furnished Magnolias apartment kept for corporate leases: imported kitchen, staff quarters, three parking bays and golf-course views from the living room. Landlord handles society paperwork and registration.",
     amenities: [...SOCIETY, "Concierge Desk", "Golf Course View", "Servant Quarters", "Spa & Sauna"],
@@ -96,7 +94,6 @@ const seeds: RentSeed[] = [
     verified: true,
     featured: true,
     seed: 11,
-    imageKind: "tower",
     description:
       "High-floor Park Place apartment with wardrobes, air conditioners and a modular kitchen already installed. Metro station at the society gate makes this the easiest commute to Cyber City without living in Cyber City.",
     amenities: [...SOCIETY, "Jogging Track", "Squash Court", "Piped Gas", "Yoga Deck"],
@@ -186,7 +183,6 @@ const seeds: RentSeed[] = [
     parking: 1,
     verified: true,
     seed: 12,
-    imageKind: "tower",
     description:
       "Large old-build apartment of the kind MG Road does well: thick walls, generous rooms and a real balcony. Four hundred metres to MG Road metro, so Delhi is a straight ride without changing lines.",
     amenities: [...SOCIETY, "Tennis Court", "Community Hall", "Visitor Parking", "Mature Landscaping"],
@@ -228,7 +224,6 @@ const seeds: RentSeed[] = [
     verified: true,
     featured: true,
     seed: 3,
-    imageKind: "tower",
     description:
       "A fully kitted studio for someone who wants to walk to work. Bed, sofa, washing machine, microwave and a working kitchen are all in place; move in with a suitcase.",
     amenities: [...SOCIETY, "Co-working Lounge", "Housekeeping Available", "EV Charging"],
@@ -346,7 +341,6 @@ const seeds: RentSeed[] = [
     parking: 1,
     verified: true,
     seed: 6,
-    imageKind: "tower",
     description:
       "Old-Gurgaon comfort at the quiet end of Golf Course Road, with club and pool access included in the rent. Metro station is a five-hundred-metre walk and the Sector 56 market handles daily errands.",
     amenities: [...SOCIETY, "Tennis Court", "Library", "Billiards Room", "Mature Tree Cover"],
@@ -387,7 +381,6 @@ const seeds: RentSeed[] = [
     parking: 1,
     verified: true,
     seed: 20,
-    imageKind: "tower",
     description:
       "Lawn-facing apartment with a separate study, which makes the difference when two people work from home. Low-density complex with real open space and a club that is genuinely maintained.",
     amenities: [...SOCIETY, "Badminton Court", "Amphitheatre", "Cycle Track", "Library"],
@@ -428,7 +421,6 @@ const seeds: RentSeed[] = [
     parking: 1,
     verified: true,
     seed: 13,
-    imageKind: "tower",
     description:
       "Sensible, well-kept 2 BHK inside a gated society with a working club and covered parking. Sohna Road's hospitals, schools and Omaxe Celebration Mall are all within a couple of kilometres.",
     amenities: [...SOCIETY, "Convenience Store", "Jogging Track", "Day-Care Centre"],
@@ -468,7 +460,6 @@ const seeds: RentSeed[] = [
     parking: 2,
     verified: true,
     seed: 27,
-    imageKind: "tower",
     description:
       "First tenancy in a newly handed-over Sobha tower. Nothing has been used yet, the expressway entry is a kilometre away and the airport run takes about twenty minutes off-peak.",
     amenities: [...SOCIETY, "Sky Lounge", "Retail Plaza", "EV Charging", "Indoor Games"],
@@ -509,7 +500,6 @@ const seeds: RentSeed[] = [
     parking: 1,
     verified: true,
     seed: 22,
-    imageKind: "tower",
     description:
       "The most affordable gated option in this list. A township address with its own school and market square, and an easy run to IMT Manesar for anyone working on that side of the city.",
     amenities: [...SOCIETY, "Township Market", "Shuttle Service", "School Inside Township"],
@@ -528,13 +518,27 @@ const seeds: RentSeed[] = [
   },
 ];
 
-export const rentals: RentListing[] = seeds.map(
-  ({ seed, imageKind, ...rest }) => ({
+// Offset so a rental never leads with the same exterior as the sale listing in
+// the same position, which is visible when someone clicks Buy then Rent. Kept
+// small enough that the eight rental apartments stay inside the tower and urban
+// photos rather than running into the end of the pool, which the houses use.
+const HERO_OFFSET = 2;
+
+const heroIndex = new Map<ImageKind, number>();
+
+export const rentals: RentListing[] = seeds.map(({ seed, ...rest }) => {
+  const kind = imageKindFor(rest.type);
+  const index = heroIndex.get(kind) ?? 0;
+  heroIndex.set(kind, index + 1);
+
+  return {
     ...rest,
     listingType: "rent",
-    images: gallery(seed, imageKind).map((id) => photo(id, 1400, 900)),
+    images: gallery(seed, kind, index + HERO_OFFSET).map((id) =>
+      photo(id, 1400, 900),
+    ),
     nearby: nearbyFor(rest.localitySlug),
-  }),
-);
+  };
+});
 
 export const featuredRentals = rentals.filter((r) => r.featured);
