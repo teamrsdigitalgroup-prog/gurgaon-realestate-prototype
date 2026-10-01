@@ -106,16 +106,18 @@ config.ts               Everything you edit per agency
 
 ## Mock data
 
-`/data` holds 20 properties for sale and 12 rentals across 14 real Gurgaon
+`/data` holds 22 properties for sale and 12 rentals across 14 real Gurgaon
 micro-markets — DLF Phases 1 to 5, Golf Course Road, Sohna Road, Sector 56,
 Sector 82, Cyber City, MG Road, Nirvana Country, Dwarka Expressway and Southern
 Peripheral Road — with real society names, prices in crore/lakh, per-locality
 landmarks and distances, 20 reviews and 6 testimonials.
 
 To add a listing, append an entry to the `seeds` array in `data/properties.ts`
-(or `data/rentals.ts`). Images come from Unsplash via `lib/images.ts`; the
-`gallery(seed)` helper returns a deterministic set of photos so a listing always
-looks the same. `images.unsplash.com` is already whitelisted in
+(or `data/rentals.ts`). Images come from Unsplash via `lib/images.ts`, which
+groups photo ids by what they actually show — towers, modern blocks, villas,
+interiors — so an apartment never leads with a photo of a cottage. The hero is
+picked from the pool matching the listing's `type`, counted per pool so no two
+cards in a grid repeat. `images.unsplash.com` is already whitelisted in
 `next.config.ts`.
 
 Prices are stored as plain rupee integers. `lib/format.ts` turns them into
