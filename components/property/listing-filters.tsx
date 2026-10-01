@@ -264,16 +264,23 @@ function FilterSelect({
   onChange: (value: string) => void;
   options: { value: string; label: string }[];
 }) {
+  const id = `filter-${label.toLowerCase().replace(/[^a-z]+/g, "-")}`;
+
   return (
     <div className="flex flex-col gap-1.5">
-      <Label className="text-[11px] font-semibold uppercase tracking-[0.1em] text-muted-foreground">
+      <Label
+        htmlFor={id}
+        className="text-[11px] font-semibold uppercase tracking-[0.1em] text-muted-foreground"
+      >
         {label}
       </Label>
+      {/* `items` is what makes the trigger show the label instead of the raw value. */}
       <Select
+        items={options}
         value={value}
         onValueChange={(next) => onChange(next ?? ALL)}
       >
-        <SelectTrigger className="h-11 w-full">
+        <SelectTrigger id={id} className="h-11 w-full">
           <SelectValue placeholder={label} />
         </SelectTrigger>
         <SelectContent>

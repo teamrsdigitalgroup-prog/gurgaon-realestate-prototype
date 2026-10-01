@@ -164,12 +164,17 @@ export function ListPropertyForm() {
         </div>
 
         <div className="flex flex-col gap-1.5">
-          <Label>Locality</Label>
+          <Label htmlFor="owner-locality-trigger">Locality</Label>
           <Select
+            items={localities.map((l) => ({ value: l.slug, label: l.name }))}
             value={values.locality}
             onValueChange={(value) => set("locality", value ?? "")}
           >
-            <SelectTrigger className="h-10 w-full" aria-invalid={Boolean(errors.locality)}>
+            <SelectTrigger
+              id="owner-locality-trigger"
+              className="h-10 w-full"
+              aria-invalid={Boolean(errors.locality)}
+            >
               <SelectValue placeholder="Select locality" />
             </SelectTrigger>
             <SelectContent>
@@ -184,12 +189,16 @@ export function ListPropertyForm() {
         </div>
 
         <div className="flex flex-col gap-1.5">
-          <Label>Property type</Label>
+          <Label htmlFor="owner-type-trigger">Property type</Label>
           <Select
             value={values.type}
             onValueChange={(value) => set("type", value ?? "")}
           >
-            <SelectTrigger className="h-10 w-full" aria-invalid={Boolean(errors.type)}>
+            <SelectTrigger
+              id="owner-type-trigger"
+              className="h-10 w-full"
+              aria-invalid={Boolean(errors.type)}
+            >
               <SelectValue placeholder="Select type" />
             </SelectTrigger>
             <SelectContent>
