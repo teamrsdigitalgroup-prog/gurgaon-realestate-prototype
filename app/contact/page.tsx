@@ -11,7 +11,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import { OFFICE_ADDRESS, SITE_CITY } from "@/config";
+import { SITE_CITY } from "@/config";
 import { allListings, localities } from "@/data";
 import { photo } from "@/lib/images";
 import { pageTitle, resolveBroker } from "@/lib/broker";
@@ -149,7 +149,7 @@ export default async function ContactPage({
             <div className="relative aspect-[4/3] overflow-hidden rounded-2xl shadow-xl sm:aspect-[5/4]">
               <Image
                 src={photo("photo-1497366754035-f200968a6e72", 1000, 800)}
-                alt={`The ${broker.name} office on Golf Course Road`}
+                alt={`The ${broker.name} office in ${SITE_CITY}`}
                 fill
                 sizes="(max-width: 1024px) 100vw, 45vw"
                 className="object-cover"
@@ -157,44 +157,59 @@ export default async function ContactPage({
             </div>
 
             <ul className="mt-5 grid gap-3">
-              <li className="flex items-start gap-3 rounded-xl border border-border bg-card p-4">
-                <MapPin className="mt-0.5 size-4 shrink-0 text-brand" aria-hidden />
-                <span className="text-[14px]">
-                  <span className="font-medium">Office</span>
-                  <span className="mt-0.5 block text-muted-foreground">
-                    {OFFICE_ADDRESS.join(", ")}
+              {broker.address && (
+                <li className="flex items-start gap-3 rounded-xl border border-border bg-card p-4">
+                  <MapPin
+                    className="mt-0.5 size-4 shrink-0 text-brand"
+                    aria-hidden
+                  />
+                  <span className="text-[14px]">
+                    <span className="font-medium">Office</span>
+                    <span
+                      data-company-address
+                      className="mt-0.5 block text-muted-foreground"
+                    >
+                      {broker.address}
+                    </span>
                   </span>
-                </span>
-              </li>
-              <li className="flex items-start gap-3 rounded-xl border border-border bg-card p-4">
-                <Phone className="mt-0.5 size-4 shrink-0 text-brand" aria-hidden />
-                <span className="text-[14px]">
-                  <span className="font-medium">Call</span>
-                  <a
-                    href={broker.telUrl}
-                    className="mt-0.5 block text-muted-foreground hover:text-brand"
-                  >
-                    {broker.phoneDisplay}
-                  </a>
-                </span>
-              </li>
-              <li className="flex items-start gap-3 rounded-xl border border-border bg-card p-4">
-                <MessageCircle
-                  className="mt-0.5 size-4 shrink-0 text-brand"
-                  aria-hidden
-                />
-                <span className="text-[14px]">
-                  <span className="font-medium">WhatsApp</span>
-                  <a
-                    href={broker.whatsappUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="mt-0.5 block text-muted-foreground hover:text-brand"
-                  >
-                    Message {broker.name}
-                  </a>
-                </span>
-              </li>
+                </li>
+              )}
+              {broker.telUrl && (
+                <li className="flex items-start gap-3 rounded-xl border border-border bg-card p-4">
+                  <Phone
+                    className="mt-0.5 size-4 shrink-0 text-brand"
+                    aria-hidden
+                  />
+                  <span className="text-[14px]">
+                    <span className="font-medium">Call</span>
+                    <a
+                      href={broker.telUrl}
+                      className="mt-0.5 block text-muted-foreground hover:text-brand"
+                    >
+                      {broker.phoneDisplay}
+                    </a>
+                  </span>
+                </li>
+              )}
+              {broker.whatsappUrl && (
+                <li className="flex items-start gap-3 rounded-xl border border-border bg-card p-4">
+                  <MessageCircle
+                    className="mt-0.5 size-4 shrink-0 text-brand"
+                    aria-hidden
+                  />
+                  <span className="text-[14px]">
+                    <span className="font-medium">WhatsApp</span>
+                    <a
+                      href={broker.whatsappUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="mt-0.5 block text-muted-foreground hover:text-brand"
+                    >
+                      Message {broker.name}
+                    </a>
+                  </span>
+                </li>
+              )}
               <li className="flex items-start gap-3 rounded-xl border border-border bg-card p-4">
                 <Clock className="mt-0.5 size-4 shrink-0 text-brand" aria-hidden />
                 <span className="text-[14px]">

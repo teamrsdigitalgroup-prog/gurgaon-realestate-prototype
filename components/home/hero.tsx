@@ -57,16 +57,28 @@ export function Hero({ broker }: { broker: Broker }) {
               Browse properties
               <ArrowRight className="size-4" aria-hidden />
             </BrokerLink>
-            <a
-              href={broker.telUrl}
-              className={cn(
-                buttonVariants({ size: "lg", variant: "outline" }),
-                "h-12 border-brand-border bg-background px-6 text-foreground hover:bg-brand-soft",
-              )}
-            >
-              <Phone className="size-4 text-brand" aria-hidden />
-              Talk to {broker.name}
-            </a>
+            {broker.telUrl ? (
+              <a
+                href={broker.telUrl}
+                className={cn(
+                  buttonVariants({ size: "lg", variant: "outline" }),
+                  "h-12 border-brand-border bg-background px-6 text-foreground hover:bg-brand-soft",
+                )}
+              >
+                <Phone className="size-4 text-brand" aria-hidden />
+                Talk to {broker.name}
+              </a>
+            ) : (
+              <BrokerLink
+                href="/contact"
+                className={cn(
+                  buttonVariants({ size: "lg", variant: "outline" }),
+                  "h-12 border-brand-border bg-background px-6 text-foreground hover:bg-brand-soft",
+                )}
+              >
+                Talk to {broker.name}
+              </BrokerLink>
+            )}
           </div>
 
           <dl className="mt-10 grid max-w-xl grid-cols-2 gap-x-6 gap-y-5 border-t border-brand-border pt-7 sm:grid-cols-4">

@@ -1,42 +1,73 @@
 ---
-description: How to add a new client to this prototype so one deployment serves a per-client company name
+description: How to add or update a client in clients.json so one deployment serves per-client name, address and phone
 alwaysApply: true
 ---
 
 # Adding a client
 
-When the user says **"Add client: <Company Name>, id <client-id>"**:
-
-1. Add one entry to `clients.json` at the repo root, keyed by `<client-id>`:
+A client entry holds three fields, all optional except `name`:
 
 ```json
-"<client-id>": { "name": "<Company Name>" }
+"gurugram-landbase": {
+  "name": "Gurugram Landbase",
+  "address": "Plot No. 94, Sector 110, Dwarka Expressway, Gurugram 122017",
+  "phone": "+919792069206"
+}
 ```
 
-2. Do not touch any other file, and do not edit, reorder or reformat existing
-   entries — including `default`. The whole point of the setup is that adding a
-   client is a one-line JSON change.
-3. Commit and push that single file.
-4. Print the finished link for the user:
+## Trigger 1 — a pasted spreadsheet row
+
+When the user pastes a tab-separated row, for example:
 
 ```
-https://gurgaon-realestate-prototype.teamrsdigitalgroup.workers.dev/?c=<client-id>
+Gurugram Landbase	Plot No. 94, Sector 110, Dwarka Expressway, Gurugram 122017	9792069206	Gurgaon	Yes	Grotal	2026-10-01	...	Sent
 ```
 
-Keep `<client-id>` lowercase and hyphenated (`rawat-street`, not `Rawat Street`),
-because it goes in the URL.
+read only the first three tab-separated columns and ignore every other column:
+
+| Column | Field |
+| --- | --- |
+| 1 | `name` |
+| 2 | `address` |
+| 3 | `phone` |
+
+## Trigger 2 — a spoken instruction
+
+"Add client: `<Company Name>`, id `<client-id>`" — use the given id and name, and
+leave `address` and `phone` out unless the user supplied them.
+
+## Rules
+
+1. **Derive the id from the name**: lowercase, non-alphanumerics collapsed to
+   single hyphens, no leading or trailing hyphen. "Gurugram Landbase" becomes
+   `gurugram-landbase`. An explicitly given id wins over the derived one.
+2. **Format the phone as `+91XXXXXXXXXX`**: strip spaces, dashes and brackets,
+   keep the last 10 digits, prefix `+91`. If fewer than 10 digits survive, treat
+   the phone as missing.
+3. **Update, never duplicate**: if the id already exists in `clients.json`,
+   overwrite that entry's fields in place.
+4. **Never borrow another client's details.** A missing address or phone stays
+   out of the JSON; the site hides those elements rather than falling back to the
+   default client's. Writing a placeholder number would make the Call button
+   dial someone else's business.
+5. **Only edit `clients.json`.** No other file, and no other entry — including
+   `default`.
+6. Commit that one file, push to `main`, and print the finished link:
+
+```
+https://gurgaon-realestate-prototype.teamrsdigitalgroup.workers.dev/?c=<id>
+```
 
 ## How it works
 
 `clients.json` is imported at build time by `lib/clients.ts`. Every page reads
 the `c` query parameter server-side through `resolveBroker` in `lib/broker.ts`,
-so the company name is in the first byte of HTML — nav, hero, footer, headings,
-`<title>` and meta description all come from the same resolved value and there
-is no flash of the previous name.
+so the details are in the first byte of HTML and never flash the previous
+client's. The resolved name, address and phone feed the nav, hero, footer,
+contact section, property pages, `<title>` and the meta description from that one
+source.
 
 A missing or unknown `c` falls back to the `default` entry, so the plain link
 with no query string keeps working exactly as before.
 
-The live site redeploys from `main`, so a new client is live once the push
-builds. `https://<worker>/?c=<client-id>` is the check; `https://<worker>/clients.json`
-shows which entries actually made it into the deployed bundle.
+`https://<worker>/clients.json` shows which entries made it into the live bundle.

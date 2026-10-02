@@ -1,4 +1,15 @@
 {
-  "default": { "name": "Radisson Estate" },
-  "rawat-street": { "name": "Rawat Street" }
+  "default": {
+    "name": "Radisson Estate",
+    "address": "Golf Course Road, Sector 54, Gurugram 122002, Haryana",
+    "phone": "+919999999999"
+  },
+  "rawat-street": {
+    "name": "Rawat Street"
+  },
+  "gurugram-landbase": {
+    "name": "Gurugram Landbase",
+    "address": "Plot No. 94, Sector 110, Dwarka Expressway, Gurugram 122017",
+    "phone": "+919792069206"
+  }
 }

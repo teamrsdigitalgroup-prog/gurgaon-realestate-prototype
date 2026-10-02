@@ -15,20 +15,12 @@ export const AGENCY_WHATSAPP = "918941962480";
 export const AGENCY_NAME = "R&S Digital Group";
 
 /**
- * The company name comes from the "default" entry in clients.json. Add a client
- * there to serve another name from the same deployment via `?c=<client-id>`;
- * a `?broker=` parameter in the URL still overrides whichever one is in play.
+ * Name, address and phone all come from clients.json: the "default" entry, or
+ * whichever one `?c=<client-id>` selects. A `?broker=` or `?phone=` parameter in
+ * the URL still overrides whichever client is in play.
  */
 export const DEFAULT_BROKER_NAME = DEFAULT_CLIENT_NAME;
-/** Placeholder — replace with the broker's real number before sending. */
-export const DEFAULT_BROKER_PHONE = "9999999999";
 export const DEFAULT_BRAND_COLOR = "#0e7c66";
-
-/** Office address, printed in the footer and on the contact page. */
-export const OFFICE_ADDRESS = [
-  "Golf Course Road, Sector 54",
-  "Gurugram 122002, Haryana",
-] as const;
 
 /** Copy for the sticky bottom banner. `{broker}` is replaced at render time. */
 export const DEMO_BANNER_TEXT =

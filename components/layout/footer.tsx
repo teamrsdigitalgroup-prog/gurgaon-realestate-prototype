@@ -1,12 +1,11 @@
 "use client";
 
 import { MapPin, MessageCircle, Phone } from "lucide-react";
-import { Fragment } from "react";
 import { BrokerLink } from "@/components/broker/broker-link";
 import { BrokerLogo } from "@/components/broker/broker-logo";
 import { useBroker } from "@/components/broker/broker-provider";
 import { localities } from "@/data/localities";
-import { AGENCY_NAME, OFFICE_ADDRESS, SITE_CITY } from "@/config";
+import { AGENCY_NAME, SITE_CITY } from "@/config";
 
 const services = [
   { href: "/buy", label: "Buy a property" },
@@ -42,24 +41,26 @@ export function Footer() {
               apartments on Golf Course Road and new launches on Dwarka
               Expressway.
             </p>
-            <div className="mt-6 flex flex-wrap gap-2">
-              <a
-                href={broker.telUrl}
-                className="inline-flex items-center gap-2 rounded-full border border-brand-border bg-background px-4 py-2 text-sm font-medium transition hover:bg-brand-soft"
-              >
-                <Phone className="size-3.5 text-brand" aria-hidden />
-                {broker.phoneDisplay}
-              </a>
-              <a
-                href={broker.whatsappUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 rounded-full border border-brand-border bg-background px-4 py-2 text-sm font-medium transition hover:bg-brand-soft"
-              >
-                <MessageCircle className="size-3.5 text-brand" aria-hidden />
-                WhatsApp
-              </a>
-            </div>
+            {broker.telUrl && broker.whatsappUrl && (
+              <div className="mt-6 flex flex-wrap gap-2">
+                <a
+                  href={broker.telUrl}
+                  className="inline-flex items-center gap-2 rounded-full border border-brand-border bg-background px-4 py-2 text-sm font-medium transition hover:bg-brand-soft"
+                >
+                  <Phone className="size-3.5 text-brand" aria-hidden />
+                  {broker.phoneDisplay}
+                </a>
+                <a
+                  href={broker.whatsappUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 rounded-full border border-brand-border bg-background px-4 py-2 text-sm font-medium transition hover:bg-brand-soft"
+                >
+                  <MessageCircle className="size-3.5 text-brand" aria-hidden />
+                  WhatsApp
+                </a>
+              </div>
+            )}
           </div>
 
           <nav aria-label="Services">
@@ -102,18 +103,19 @@ export function Footer() {
             <h2 className="font-heading text-sm font-semibold uppercase tracking-[0.12em]">
               Office
             </h2>
-            <p className="mt-4 flex gap-2.5 text-sm text-muted-foreground">
-              <MapPin className="mt-0.5 size-4 shrink-0 text-brand" aria-hidden />
-              <span>
-                {broker.name}
-                {OFFICE_ADDRESS.map((line) => (
-                  <Fragment key={line}>
-                    <br />
-                    {line}
-                  </Fragment>
-                ))}
-              </span>
-            </p>
+            {broker.address && (
+              <p className="mt-4 flex gap-2.5 text-sm text-muted-foreground">
+                <MapPin
+                  className="mt-0.5 size-4 shrink-0 text-brand"
+                  aria-hidden
+                />
+                <span>
+                  {broker.name}
+                  <br />
+                  <span data-company-address>{broker.address}</span>
+                </span>
+              </p>
+            )}
             <p className="mt-4 text-sm text-muted-foreground">
               Monday to Saturday, 10:00 – 19:00
               <br />

@@ -63,43 +63,69 @@ Invalid input is handled rather than trusted: names are whitespace-collapsed and
 capped at 48 characters, phone numbers must be 10 digits or the default is used,
 and a malformed colour falls back to the default brand colour.
 
-## One deployment, one company name per client
+## One deployment, one client per link
 
-`clients.json` at the repo root maps a short client id to a company name:
+`clients.json` at the repo root maps a short client id to a name, an address and
+a phone number:
 
 ```json
 {
-  "default": { "name": "Radisson Estate" },
-  "rawat-street": { "name": "Rawat Street" }
+  "default": {
+    "name": "Radisson Estate",
+    "address": "Golf Course Road, Sector 54, Gurugram 122002, Haryana",
+    "phone": "+919999999999"
+  },
+  "rawat-street": { "name": "Rawat Street" },
+  "gurugram-landbase": {
+    "name": "Gurugram Landbase",
+    "address": "Plot No. 94, Sector 110, Dwarka Expressway, Gurugram 122017",
+    "phone": "+919792069206"
+  }
 }
 ```
 
-Visiting `/?c=rawat-street` renders "Rawat Street" everywhere the company name
-appears: nav wordmark and logo initials, hero heading, section headings, forms,
-footer, `<title>` and the meta description. No `c` parameter, or an id that is
+Visiting `/?c=gurugram-landbase` renders those details everywhere the site shows
+them: nav wordmark and Contact button, hero heading and Talk-to button, section
+headings, forms, footer office block, the contact section, property enquiry
+panels, `<title>` and the meta description. No `c` parameter, or an id that is
 not in the file, falls back to the `default` entry — so the plain link keeps
-showing the same name it always did.
+showing the same details it always did.
+
+Only `name` is required. A client with no `address` or `phone` — like
+`rawat-street` above — simply has those elements hidden: the Call and WhatsApp
+buttons and the office address disappear instead of falling back to another
+client's details, so a half-filled entry can never dial a competitor.
 
 ### Adding a client
 
-1. Add one entry to `clients.json`:
+1. Add one entry to `clients.json`. The id is the name in lowercase with
+   hyphens, and the phone is stored as `+91` plus 10 digits:
 
 ```json
-"sharma-realty": { "name": "Sharma Realty" }
+"sharma-realty": {
+  "name": "Sharma Realty",
+  "address": "Sector 54, Gurugram 122002",
+  "phone": "+919876543210"
+}
 ```
 
 2. Commit and push to `main`. Cloudflare rebuilds the Worker.
 3. Send `https://<your-worker>/?c=sharma-realty`.
 
-That is the only file you need to touch. `lib/clients.ts` imports the JSON at
-build time and `resolveBroker` in `lib/broker.ts` reads the `c` parameter on the
-server, so the name is in the first byte of HTML and never flashes the previous
-one. The same file is also published at `/clients.json` (copied into `public/`
-by `scripts/sync-clients-asset.mjs` before every dev run and build), which is a
+That is the only file you need to touch — `.cursor/rules/add-client.mdc` holds
+the same instructions for an agent, including how to read a pasted tab-separated
+spreadsheet row (columns 1–3 are name, address, phone; the rest are ignored).
+
+`lib/clients.ts` imports the JSON at build time and `resolveBroker` in
+`lib/broker.ts` reads the `c` parameter on the server, so the details are in the
+first byte of HTML and never flash the previous client's. The same file is also
+published at `/clients.json` (copied into `public/` by
+`scripts/sync-clients-asset.mjs` before every dev run and build), which is a
 quick way to confirm a new client reached the live bundle.
 
-Rendered company names carry a `data-company` attribute on the nav wordmark,
-hero heading and footer, so they are easy to find and to assert against.
+The rendered name carries a `data-company` attribute on the nav wordmark, hero
+heading and footer, and the address carries `data-company-address`, so both are
+easy to find and to assert against.
 
 ## Editing the demo for your own agency
 
@@ -108,9 +134,7 @@ Open `config.ts`. That one file holds everything you need to change:
 ```ts
 export const AGENCY_WHATSAPP = "91XXXXXXXXXX"; // your number for the sticky banner
 export const AGENCY_NAME = "R&S Digital Group";
-export const DEFAULT_BROKER_PHONE = "9999999999";
 export const DEFAULT_BRAND_COLOR = "#0e7c66";
-export const OFFICE_ADDRESS = ["Golf Course Road, Sector 54", "Gurugram 122002, Haryana"];
 export const DEMO_BANNER_TEXT =
   "This is a demo prototype for {broker}. Want your own website like this?";
 ```

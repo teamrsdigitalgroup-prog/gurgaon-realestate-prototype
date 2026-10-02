@@ -16,6 +16,8 @@ export function ContactActions({
   context?: string;
 }) {
   const broker = useBroker();
+  if (!broker.phone || !broker.telUrl) return null;
+
   const whatsappUrl = context
     ? `https://wa.me/91${broker.phone}?text=${encodeURIComponent(
         `Hi ${broker.name}, I'm interested in ${context}. Is it still available?`,

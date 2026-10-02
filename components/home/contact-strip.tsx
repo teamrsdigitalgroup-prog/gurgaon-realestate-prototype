@@ -1,4 +1,4 @@
-import { Clock, MessageCircle, Phone } from "lucide-react";
+import { Clock, MapPin, MessageCircle, Phone } from "lucide-react";
 import { EnquiryForm } from "@/components/forms/enquiry-form";
 import { SITE_CITY } from "@/config";
 import type { Broker } from "@/lib/broker";
@@ -21,45 +21,65 @@ export function ContactStrip({ broker }: { broker: Broker }) {
           </p>
 
           <dl className="mt-8 space-y-4">
-            <div className="flex items-center gap-3">
-              <span className="grid size-10 place-items-center rounded-xl bg-white/10">
-                <Phone className="size-4" aria-hidden />
-              </span>
-              <div>
-                <dt className="text-[11.5px] uppercase tracking-[0.1em] text-neutral-500">
-                  Call
-                </dt>
-                <dd>
-                  <a
-                    href={broker.telUrl}
-                    className="text-[15px] font-medium hover:text-brand-muted"
-                  >
-                    {broker.phoneDisplay}
-                  </a>
-                </dd>
+            {broker.telUrl && (
+              <div className="flex items-center gap-3">
+                <span className="grid size-10 place-items-center rounded-xl bg-white/10">
+                  <Phone className="size-4" aria-hidden />
+                </span>
+                <div>
+                  <dt className="text-[11.5px] uppercase tracking-[0.1em] text-neutral-500">
+                    Call
+                  </dt>
+                  <dd>
+                    <a
+                      href={broker.telUrl}
+                      className="text-[15px] font-medium hover:text-brand-muted"
+                    >
+                      {broker.phoneDisplay}
+                    </a>
+                  </dd>
+                </div>
               </div>
-            </div>
+            )}
 
-            <div className="flex items-center gap-3">
-              <span className="grid size-10 place-items-center rounded-xl bg-white/10">
-                <MessageCircle className="size-4" aria-hidden />
-              </span>
-              <div>
-                <dt className="text-[11.5px] uppercase tracking-[0.1em] text-neutral-500">
-                  WhatsApp
-                </dt>
-                <dd>
-                  <a
-                    href={broker.whatsappUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-[15px] font-medium hover:text-brand-muted"
-                  >
-                    Message us directly
-                  </a>
-                </dd>
+            {broker.whatsappUrl && (
+              <div className="flex items-center gap-3">
+                <span className="grid size-10 place-items-center rounded-xl bg-white/10">
+                  <MessageCircle className="size-4" aria-hidden />
+                </span>
+                <div>
+                  <dt className="text-[11.5px] uppercase tracking-[0.1em] text-neutral-500">
+                    WhatsApp
+                  </dt>
+                  <dd>
+                    <a
+                      href={broker.whatsappUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-[15px] font-medium hover:text-brand-muted"
+                    >
+                      Message us directly
+                    </a>
+                  </dd>
+                </div>
               </div>
-            </div>
+            )}
+
+            {broker.address && (
+              <div className="flex items-center gap-3">
+                <span className="grid size-10 place-items-center rounded-xl bg-white/10">
+                  <MapPin className="size-4" aria-hidden />
+                </span>
+                <div>
+                  <dt className="text-[11.5px] uppercase tracking-[0.1em] text-neutral-500">
+                    Office
+                  </dt>
+                  <dd data-company-address className="text-[15px] font-medium">
+                    {broker.address}
+                  </dd>
+                </div>
+              </div>
+            )}
 
             <div className="flex items-center gap-3">
               <span className="grid size-10 place-items-center rounded-xl bg-white/10">

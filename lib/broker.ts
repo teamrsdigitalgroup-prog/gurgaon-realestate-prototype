@@ -1,11 +1,8 @@
-import {
-  DEFAULT_BRAND_COLOR,
-  DEFAULT_BROKER_NAME,
-  DEFAULT_BROKER_PHONE,
-} from "@/config";
+import { DEFAULT_BRAND_COLOR, DEFAULT_BROKER_NAME } from "@/config";
 import {
   CLIENT_PARAM,
   DEFAULT_CLIENT_ID,
+  localPhone,
   resolveClient,
   type Client,
 } from "@/lib/clients";
@@ -19,18 +16,21 @@ export type Broker = {
   isPlaceholder: boolean;
   /** "SP" — drawn as the logo mark. */
   initials: string;
-  /** 10 digits, no country code. */
-  phone: string;
+  /** Office address, or undefined when this client has none on file. */
+  address?: string;
+  /** 10 digits, no country code; undefined when this client has no number. */
+  phone?: string;
   /** "+91 99999 99999" */
-  phoneDisplay: string;
+  phoneDisplay?: string;
   /** Brand colour as #rrggbb. */
   color: string;
   /** Readable text colour on top of `color`. */
   onColor: string;
   /** Query string that carries this identity to the next page. */
   params: string;
-  whatsappUrl: string;
-  telUrl: string;
+  /** Undefined alongside `phone`: callers hide the button instead. */
+  whatsappUrl?: string;
+  telUrl?: string;
 };
 
 export type RawSearchParams = Record<string, string | string[] | undefined>;
@@ -62,12 +62,6 @@ export function initialsOf(name: string): string {
   if (words.length === 0) return "";
   if (words.length === 1) return words[0].slice(0, 2).toUpperCase();
   return (words[0][0] + words[1][0]).toUpperCase();
-}
-
-function normalizePhone(value: string | undefined): string {
-  const digits = (value ?? "").replace(/\D/g, "");
-  const local = digits.length > 10 ? digits.slice(-10) : digits;
-  return local.length === 10 ? local : DEFAULT_BROKER_PHONE;
 }
 
 function normalizeColor(value: string | undefined): string {
@@ -108,13 +102,14 @@ export function buildBroker(input: {
   const providedName = input.name ? cleanName(input.name) : "";
   const isPlaceholder = providedName.length === 0;
   const name = isPlaceholder ? client.name : providedName;
-  const phone = normalizePhone(input.phone);
+  const overridePhone = localPhone(input.phone);
+  const phone = overridePhone ?? client.phone;
   const color = normalizeColor(input.color);
 
   const params = new URLSearchParams();
   if (client.id !== DEFAULT_CLIENT_ID) params.set(CLIENT_PARAM, client.id);
   if (!isPlaceholder) params.set("broker", name);
-  if (phone !== DEFAULT_BROKER_PHONE) params.set("phone", phone);
+  if (overridePhone) params.set("phone", overridePhone);
   if (color !== DEFAULT_BRAND_COLOR) params.set("color", color);
 
   const message = `Hi ${name}, I found your website and I'm interested in a property in Gurgaon.`;
@@ -125,13 +120,16 @@ export function buildBroker(input: {
     isPlaceholder,
     // A name of pure punctuation yields no initials, so fall back to the default.
     initials: initialsOf(name) || initialsOf(DEFAULT_BROKER_NAME),
+    address: client.address,
     phone,
-    phoneDisplay: formatPhone(phone),
+    phoneDisplay: phone ? formatPhone(phone) : undefined,
     color,
     onColor: readableTextOn(color),
     params: params.toString(),
-    whatsappUrl: `https://wa.me/91${phone}?text=${encodeURIComponent(message)}`,
-    telUrl: `tel:+91${phone}`,
+    whatsappUrl: phone
+      ? `https://wa.me/91${phone}?text=${encodeURIComponent(message)}`
+      : undefined,
+    telUrl: phone ? `tel:+91${phone}` : undefined,
   };
 }
 

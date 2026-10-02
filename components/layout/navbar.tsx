@@ -86,16 +86,28 @@ export function Navbar() {
         </ul>
 
         <div className="ml-auto flex items-center gap-2 lg:ml-3">
-          <a
-            href={broker.telUrl}
-            className={cn(
-              buttonVariants(),
-              "hidden h-10 max-w-[16rem] bg-brand px-4 text-brand-ink shadow-sm transition hover:bg-brand-strong sm:inline-flex",
-            )}
-          >
-            <Phone className="size-4 shrink-0" aria-hidden />
-            <span className="truncate">Contact {broker.name}</span>
-          </a>
+          {broker.telUrl ? (
+            <a
+              href={broker.telUrl}
+              className={cn(
+                buttonVariants(),
+                "hidden h-10 max-w-[16rem] bg-brand px-4 text-brand-ink shadow-sm transition hover:bg-brand-strong sm:inline-flex",
+              )}
+            >
+              <Phone className="size-4 shrink-0" aria-hidden />
+              <span className="truncate">Contact {broker.name}</span>
+            </a>
+          ) : (
+            <BrokerLink
+              href="/contact"
+              className={cn(
+                buttonVariants(),
+                "hidden h-10 max-w-[16rem] bg-brand px-4 text-brand-ink shadow-sm transition hover:bg-brand-strong sm:inline-flex",
+              )}
+            >
+              <span className="truncate">Contact {broker.name}</span>
+            </BrokerLink>
+          )}
 
           <Sheet open={open} onOpenChange={setOpen}>
             <SheetTrigger
@@ -126,21 +138,23 @@ export function Navbar() {
                   </li>
                 ))}
               </ul>
-              <div className="mt-auto flex flex-col gap-2 p-4">
-                <a
-                  href={broker.telUrl}
-                  className={cn(
-                    buttonVariants(),
-                    "h-11 w-full bg-brand text-brand-ink hover:bg-brand-strong",
-                  )}
-                >
-                  <Phone className="size-4 shrink-0" aria-hidden />
-                  <span className="truncate">Call {broker.name}</span>
-                </a>
-                <p className="text-center text-xs text-muted-foreground">
-                  {broker.phoneDisplay}
-                </p>
-              </div>
+              {broker.telUrl && (
+                <div className="mt-auto flex flex-col gap-2 p-4">
+                  <a
+                    href={broker.telUrl}
+                    className={cn(
+                      buttonVariants(),
+                      "h-11 w-full bg-brand text-brand-ink hover:bg-brand-strong",
+                    )}
+                  >
+                    <Phone className="size-4 shrink-0" aria-hidden />
+                    <span className="truncate">Call {broker.name}</span>
+                  </a>
+                  <p className="text-center text-xs text-muted-foreground">
+                    {broker.phoneDisplay}
+                  </p>
+                </div>
+              )}
             </SheetContent>
           </Sheet>
         </div>

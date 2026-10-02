@@ -323,7 +323,8 @@ export default async function PropertyPage({
               />
 
               <p className="mt-3 text-center text-xs text-muted-foreground">
-                {broker.name} · {broker.phoneDisplay}
+                {broker.name}
+                {broker.phoneDisplay ? ` · ${broker.phoneDisplay}` : ""}
               </p>
 
               <div className="mt-6 border-t border-border pt-6">
