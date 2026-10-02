@@ -29,7 +29,10 @@ export function Hero({ broker }: { broker: Broker }) {
             RERA-verified listings in {SITE_CITY}
           </p>
 
-          <h1 className="mt-5 text-[2.1rem] font-semibold leading-[1.08] sm:text-5xl lg:text-[3.4rem]">
+          <h1
+            data-company
+            className="mt-5 text-[2.1rem] font-semibold leading-[1.08] sm:text-5xl lg:text-[3.4rem]"
+          >
             {broker.name}
             <span className="mt-1 block text-brand">
               Find Your Dream Property in {SITE_CITY}

@@ -3,8 +3,16 @@ import {
   DEFAULT_BROKER_NAME,
   DEFAULT_BROKER_PHONE,
 } from "@/config";
+import {
+  CLIENT_PARAM,
+  DEFAULT_CLIENT_ID,
+  resolveClient,
+  type Client,
+} from "@/lib/clients";
 
 export type Broker = {
+  /** Which clients.json entry this page resolved to. */
+  client: Client;
   /** Display name, e.g. "Sharma Properties". */
   name: string;
   /** True when the URL carried no ?broker=, so copy can stay generic. */
@@ -27,7 +35,12 @@ export type Broker = {
 
 export type RawSearchParams = Record<string, string | string[] | undefined>;
 
-export const BROKER_PARAM_KEYS = ["broker", "phone", "color"] as const;
+export const BROKER_PARAM_KEYS = [
+  CLIENT_PARAM,
+  "broker",
+  "phone",
+  "color",
+] as const;
 
 function first(value: string | string[] | undefined): string | undefined {
   const raw = Array.isArray(value) ? value[0] : value;
@@ -85,17 +98,21 @@ export function formatPhone(phone: string): string {
 }
 
 export function buildBroker(input: {
+  /** Client id from `?c=`; unknown ids fall back to the default entry. */
+  client?: string;
   name?: string;
   phone?: string;
   color?: string;
 }): Broker {
+  const client = resolveClient(input.client);
   const providedName = input.name ? cleanName(input.name) : "";
   const isPlaceholder = providedName.length === 0;
-  const name = isPlaceholder ? DEFAULT_BROKER_NAME : providedName;
+  const name = isPlaceholder ? client.name : providedName;
   const phone = normalizePhone(input.phone);
   const color = normalizeColor(input.color);
 
   const params = new URLSearchParams();
+  if (client.id !== DEFAULT_CLIENT_ID) params.set(CLIENT_PARAM, client.id);
   if (!isPlaceholder) params.set("broker", name);
   if (phone !== DEFAULT_BROKER_PHONE) params.set("phone", phone);
   if (color !== DEFAULT_BRAND_COLOR) params.set("color", color);
@@ -103,6 +120,7 @@ export function buildBroker(input: {
   const message = `Hi ${name}, I found your website and I'm interested in a property in Gurgaon.`;
 
   return {
+    client,
     name,
     isPlaceholder,
     // A name of pure punctuation yields no initials, so fall back to the default.
@@ -120,6 +138,7 @@ export function buildBroker(input: {
 /** Server-side entry point: every page resolves the broker from its own URL. */
 export function resolveBroker(searchParams: RawSearchParams): Broker {
   return buildBroker({
+    client: first(searchParams[CLIENT_PARAM]),
     name: first(searchParams.broker),
     phone: first(searchParams.phone),
     color: first(searchParams.color),

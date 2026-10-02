@@ -1,0 +1,42 @@
+---
+description: How to add a new client to this prototype so one deployment serves a per-client company name
+alwaysApply: true
+---
+
+# Adding a client
+
+When the user says **"Add client: <Company Name>, id <client-id>"**:
+
+1. Add one entry to `clients.json` at the repo root, keyed by `<client-id>`:
+
+```json
+"<client-id>": { "name": "<Company Name>" }
+```
+
+2. Do not touch any other file, and do not edit, reorder or reformat existing
+   entries — including `default`. The whole point of the setup is that adding a
+   client is a one-line JSON change.
+3. Commit and push that single file.
+4. Print the finished link for the user:
+
+```
+https://gurgaon-realestate-prototype.teamrsdigitalgroup.workers.dev/?c=<client-id>
+```
+
+Keep `<client-id>` lowercase and hyphenated (`rawat-street`, not `Rawat Street`),
+because it goes in the URL.
+
+## How it works
+
+`clients.json` is imported at build time by `lib/clients.ts`. Every page reads
+the `c` query parameter server-side through `resolveBroker` in `lib/broker.ts`,
+so the company name is in the first byte of HTML — nav, hero, footer, headings,
+`<title>` and meta description all come from the same resolved value and there
+is no flash of the previous name.
+
+A missing or unknown `c` falls back to the `default` entry, so the plain link
+with no query string keeps working exactly as before.
+
+The live site redeploys from `main`, so a new client is live once the push
+builds. `https://<worker>/?c=<client-id>` is the check; `https://<worker>/clients.json`
+shows which entries actually made it into the deployed bundle.

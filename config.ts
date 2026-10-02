@@ -3,6 +3,8 @@
  * Nothing else in the app hard-codes these values.
  */
 
+import { DEFAULT_CLIENT_NAME } from "@/lib/clients";
+
 /**
  * Your own WhatsApp number, used by the sticky "get your own website" banner.
  * Includes the 91 country code because wa.me links require it.
@@ -13,10 +15,11 @@ export const AGENCY_WHATSAPP = "918941962480";
 export const AGENCY_NAME = "R&S Digital Group";
 
 /**
- * The broker this copy of the demo is built for. A `?broker=` parameter in the
- * URL still overrides all of it, so one deployment can serve several leads.
+ * The company name comes from the "default" entry in clients.json. Add a client
+ * there to serve another name from the same deployment via `?c=<client-id>`;
+ * a `?broker=` parameter in the URL still overrides whichever one is in play.
  */
-export const DEFAULT_BROKER_NAME = "Radisson Estate";
+export const DEFAULT_BROKER_NAME = DEFAULT_CLIENT_NAME;
 /** Placeholder — replace with the broker's real number before sending. */
 export const DEFAULT_BROKER_PHONE = "9999999999";
 export const DEFAULT_BRAND_COLOR = "#0e7c66";

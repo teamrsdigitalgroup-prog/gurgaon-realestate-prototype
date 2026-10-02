@@ -28,7 +28,7 @@ export function Footer() {
             <div className="flex items-center gap-3">
               <BrokerLogo broker={broker} size="lg" />
               <div>
-                <p className="font-heading text-lg font-semibold">
+                <p data-company className="font-heading text-lg font-semibold">
                   {broker.name}
                 </p>
                 <p className="text-xs font-medium uppercase tracking-[0.14em] text-muted-foreground">

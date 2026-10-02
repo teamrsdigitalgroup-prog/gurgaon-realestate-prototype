@@ -63,6 +63,44 @@ Invalid input is handled rather than trusted: names are whitespace-collapsed and
 capped at 48 characters, phone numbers must be 10 digits or the default is used,
 and a malformed colour falls back to the default brand colour.
 
+## One deployment, one company name per client
+
+`clients.json` at the repo root maps a short client id to a company name:
+
+```json
+{
+  "default": { "name": "Radisson Estate" },
+  "rawat-street": { "name": "Rawat Street" }
+}
+```
+
+Visiting `/?c=rawat-street` renders "Rawat Street" everywhere the company name
+appears: nav wordmark and logo initials, hero heading, section headings, forms,
+footer, `<title>` and the meta description. No `c` parameter, or an id that is
+not in the file, falls back to the `default` entry — so the plain link keeps
+showing the same name it always did.
+
+### Adding a client
+
+1. Add one entry to `clients.json`:
+
+```json
+"sharma-realty": { "name": "Sharma Realty" }
+```
+
+2. Commit and push to `main`. Cloudflare rebuilds the Worker.
+3. Send `https://<your-worker>/?c=sharma-realty`.
+
+That is the only file you need to touch. `lib/clients.ts` imports the JSON at
+build time and `resolveBroker` in `lib/broker.ts` reads the `c` parameter on the
+server, so the name is in the first byte of HTML and never flashes the previous
+one. The same file is also published at `/clients.json` (copied into `public/`
+by `scripts/sync-clients-asset.mjs` before every dev run and build), which is a
+quick way to confirm a new client reached the live bundle.
+
+Rendered company names carry a `data-company` attribute on the nav wordmark,
+hero heading and footer, so they are easy to find and to assert against.
+
 ## Editing the demo for your own agency
 
 Open `config.ts`. That one file holds everything you need to change:
@@ -70,7 +108,6 @@ Open `config.ts`. That one file holds everything you need to change:
 ```ts
 export const AGENCY_WHATSAPP = "91XXXXXXXXXX"; // your number for the sticky banner
 export const AGENCY_NAME = "R&S Digital Group";
-export const DEFAULT_BROKER_NAME = "Radisson Estate"; // the lead this build is for
 export const DEFAULT_BROKER_PHONE = "9999999999";
 export const DEFAULT_BRAND_COLOR = "#0e7c66";
 export const OFFICE_ADDRESS = ["Golf Course Road, Sector 54", "Gurugram 122002, Haryana"];

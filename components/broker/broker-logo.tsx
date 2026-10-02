@@ -52,7 +52,10 @@ export function BrokerWordmark({
     <span className={cn("flex items-center gap-2.5", className)}>
       <BrokerLogo broker={broker} />
       <span className="flex min-w-0 flex-col leading-tight">
-        <span className="truncate font-heading text-[15px] font-semibold text-foreground sm:text-base">
+        <span
+          data-company
+          className="truncate font-heading text-[15px] font-semibold text-foreground sm:text-base"
+        >
           {broker.name}
         </span>
         <span className="truncate text-[10.5px] font-medium uppercase tracking-[0.14em] text-muted-foreground">

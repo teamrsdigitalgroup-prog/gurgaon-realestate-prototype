@@ -48,3 +48,6 @@ next-env.d.ts
 /.wrangler
 .dev.vars*
 worker-configuration.d.ts
+
+# generated from the root clients.json by scripts/sync-clients-asset.mjs
+/public/clients.json
