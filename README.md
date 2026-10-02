@@ -46,7 +46,7 @@ too.
 | `color` | `&color=%23b4551f` | Brand colour as a hex value (URL-encode `#` as `%23`). Three- and six-digit hex both work, and button text flips between white and near-black automatically to stay readable. |
 
 With no parameters the site falls back to the broker configured in `config.ts`
-(currently Accurate Vision Home), so a bare link is always presentable.
+(currently Radisson Estate), so a bare link is always presentable.
 
 ### How the name persists between pages
 
@@ -70,10 +70,10 @@ Open `config.ts`. That one file holds everything you need to change:
 ```ts
 export const AGENCY_WHATSAPP = "91XXXXXXXXXX"; // your number for the sticky banner
 export const AGENCY_NAME = "R&S Digital Group";
-export const DEFAULT_BROKER_NAME = "Accurate Vision Home"; // the lead this build is for
-export const DEFAULT_BROKER_PHONE = "9315530702";
+export const DEFAULT_BROKER_NAME = "Radisson Estate"; // the lead this build is for
+export const DEFAULT_BROKER_PHONE = "9999999999";
 export const DEFAULT_BRAND_COLOR = "#0e7c66";
-export const OFFICE_ADDRESS = ["Shop No. 109, 2nd Floor", "SS Omnia, Sector 86", ...];
+export const OFFICE_ADDRESS = ["Golf Course Road, Sector 54", "Gurugram 122002, Haryana"];
 export const DEMO_BANNER_TEXT =
   "This is a demo prototype for {broker}. Want your own website like this?";
 ```
