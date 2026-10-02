@@ -42,3 +42,9 @@ next-env.d.ts
 
 # cursor agent scratch output
 /agent-tools
+
+# cloudflare workers
+/.open-next
+/.wrangler
+.dev.vars*
+worker-configuration.d.ts
