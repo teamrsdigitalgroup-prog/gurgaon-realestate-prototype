@@ -138,6 +138,8 @@
   html {
     @apply font-sans;
     scroll-behavior: smooth;
+    /* A wide button or decorative blur must not create a sideways scroll on a phone. */
+    overflow-x: clip;
   }
 
   h1,

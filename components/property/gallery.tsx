@@ -73,7 +73,7 @@ export function Gallery({
             <Expand className="size-3.5" aria-hidden />
             View full size
           </DialogTrigger>
-          <DialogContent className="max-w-5xl overflow-hidden p-0 sm:max-w-5xl">
+          <DialogContent className="max-w-[calc(100%-1.5rem)] overflow-hidden p-0 sm:max-w-5xl">
             <DialogTitle className="sr-only">{title} — full size photo</DialogTitle>
             <div className="relative aspect-[16/10] w-full bg-neutral-950">
               <Image
@@ -88,7 +88,7 @@ export function Gallery({
         </Dialog>
       </div>
 
-      <ul className="no-scrollbar -mx-1 flex gap-2 overflow-x-auto px-1 pb-1">
+      <ul className="no-scrollbar flex w-full min-w-0 gap-2 overflow-x-auto pb-1">
         {images.map((src, thumbIndex) => (
           <li key={src}>
             <button

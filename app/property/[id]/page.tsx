@@ -192,13 +192,13 @@ export default async function PropertyPage({
                   return (
                     <div
                       key={spec.label}
-                      className="rounded-xl border border-border bg-card p-3.5"
+                      className="min-w-0 rounded-xl border border-border bg-card p-3.5"
                     >
                       <dt className="flex items-center gap-1.5 text-[11.5px] uppercase tracking-[0.08em] text-muted-foreground">
                         <Icon className="size-3.5 text-brand" aria-hidden />
                         {spec.label}
                       </dt>
-                      <dd className="mt-1.5 text-[14px] font-medium">
+                      <dd className="mt-1.5 break-words text-[14px] font-medium">
                         {spec.value}
                       </dd>
                     </div>
@@ -212,13 +212,13 @@ export default async function PropertyPage({
                   return (
                     <div
                       key={item.label}
-                      className="rounded-xl bg-brand-tint p-3.5"
+                      className="min-w-0 rounded-xl bg-brand-tint p-3.5"
                     >
                       <dt className="flex items-center gap-1.5 text-[11.5px] uppercase tracking-[0.08em] text-muted-foreground">
                         <Icon className="size-3.5 text-brand" aria-hidden />
                         {item.label}
                       </dt>
-                      <dd className="mt-1.5 text-[14px] font-medium">
+                      <dd className="mt-1.5 break-words text-[14px] font-medium">
                         {item.value}
                       </dd>
                     </div>

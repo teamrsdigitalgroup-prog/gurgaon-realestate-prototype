@@ -52,7 +52,7 @@ export function Navbar() {
       >
         <BrokerLink
           href="/"
-          className="min-w-0 shrink rounded-lg outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2"
+          className="min-w-0 flex-1 overflow-hidden rounded-lg outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2 lg:flex-none"
         >
           <BrokerWordmark broker={broker} />
         </BrokerLink>
@@ -114,7 +114,7 @@ export function Navbar() {
               aria-label="Open menu"
               className={cn(
                 buttonVariants({ variant: "outline", size: "icon" }),
-                "size-10 lg:hidden",
+                "size-11 lg:hidden",
               )}
             >
               <Menu className="size-5" aria-hidden />
@@ -144,7 +144,7 @@ export function Navbar() {
                     href={broker.telUrl}
                     className={cn(
                       buttonVariants(),
-                      "h-11 w-full bg-brand text-brand-ink hover:bg-brand-strong",
+                      "h-auto min-h-11 w-full max-w-full whitespace-normal bg-brand py-2.5 text-center text-brand-ink hover:bg-brand-strong",
                     )}
                   >
                     <Phone className="size-4 shrink-0" aria-hidden />

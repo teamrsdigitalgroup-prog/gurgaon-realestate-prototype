@@ -49,7 +49,7 @@ export function BrokerWordmark({
   subtitle?: string;
 }) {
   return (
-    <span className={cn("flex items-center gap-2.5", className)}>
+    <span className={cn("flex min-w-0 items-center gap-2.5", className)}>
       <BrokerLogo broker={broker} />
       <span className="flex min-w-0 flex-col leading-tight">
         <span

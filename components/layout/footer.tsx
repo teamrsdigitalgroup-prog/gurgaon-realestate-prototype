@@ -21,7 +21,7 @@ export function Footer() {
   return (
     <footer className="border-t border-border bg-brand-tint">
       {/* Extra bottom padding clears the fixed demo banner. */}
-      <div className="mx-auto max-w-7xl px-4 pt-12 pb-28 sm:px-6 sm:pb-24 lg:px-8 lg:pt-16">
+      <div className="mx-auto max-w-7xl px-4 pt-12 pb-44 sm:px-6 sm:pb-24 lg:px-8 lg:pt-16">
         <div className="grid gap-10 lg:grid-cols-[1.4fr_1fr_1fr_1.1fr]">
           <div>
             <div className="flex items-center gap-3">

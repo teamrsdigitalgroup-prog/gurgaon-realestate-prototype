@@ -130,7 +130,7 @@ export function EnquiryForm({
         type="submit"
         size="lg"
         disabled={status === "sending"}
-        className="bg-brand text-brand-ink hover:bg-brand-strong"
+        className="h-auto min-h-11 w-full whitespace-normal bg-brand py-3 text-center text-brand-ink hover:bg-brand-strong"
       >
         {status === "sending" ? (
           <>

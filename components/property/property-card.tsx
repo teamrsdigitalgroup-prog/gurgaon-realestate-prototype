@@ -79,7 +79,7 @@ export function PropertyCard({
           </span>
         </p>
 
-        <dl className="mt-4 grid grid-cols-3 gap-2 border-t border-border pt-3 text-[12.5px]">
+        <dl className="mt-4 grid grid-cols-3 gap-2 border-t border-border pt-3 text-[12px] sm:text-[12.5px]">
           <div className="flex items-center gap-1.5">
             <BedDouble className="size-4 text-muted-foreground" aria-hidden />
             <dt className="sr-only">Bedrooms</dt>

@@ -298,7 +298,7 @@ export function ListPropertyForm() {
         type="submit"
         size="lg"
         disabled={status === "sending"}
-        className="mt-6 h-12 w-full bg-brand text-brand-ink hover:bg-brand-strong"
+        className="mt-6 h-auto min-h-12 w-full whitespace-normal bg-brand py-3 text-center text-brand-ink hover:bg-brand-strong"
       >
         {status === "sending" ? (
           <>

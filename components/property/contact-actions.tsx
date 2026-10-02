@@ -25,12 +25,12 @@ export function ContactActions({
     : broker.whatsappUrl;
 
   return (
-    <div className={cn("grid gap-2.5 sm:grid-cols-2", className)}>
+    <div className={cn("grid min-w-0 gap-2.5 sm:grid-cols-2", className)}>
       <a
         href={broker.telUrl}
         className={cn(
           buttonVariants({ size }),
-          "h-11 bg-brand text-brand-ink hover:bg-brand-strong",
+          "h-auto min-h-11 w-full max-w-full whitespace-normal bg-brand px-3 py-2.5 text-center text-brand-ink hover:bg-brand-strong",
         )}
       >
         <Phone className="size-4" aria-hidden />
@@ -42,7 +42,7 @@ export function ContactActions({
         rel="noopener noreferrer"
         className={cn(
           buttonVariants({ size, variant: "outline" }),
-          "h-11 border-brand-border text-brand hover:bg-brand-soft hover:text-brand-strong",
+          "h-auto min-h-11 w-full max-w-full whitespace-normal border-brand-border px-3 py-2.5 text-center text-brand hover:bg-brand-soft hover:text-brand-strong",
         )}
       >
         <MessageCircle className="size-4" aria-hidden />

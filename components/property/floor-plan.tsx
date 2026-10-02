@@ -31,24 +31,23 @@ export function FloorPlan({
 
       <ul className="divide-y divide-border">
         {rooms.map((room) => (
-          <li
-            key={room.label}
-            className="flex items-center gap-4 px-4 py-3 sm:px-5"
-          >
-            <span className="w-32 shrink-0 text-[13.5px] font-medium sm:w-44">
-              {room.label}
-            </span>
-            <span
-              className="h-2.5 rounded-full bg-brand/80"
-              style={{
-                width: `${Math.max(8, (room.areaSqft / largest) * 100)}%`,
-                maxWidth: "70%",
-              }}
-              aria-hidden
-            />
-            <span className="ml-auto shrink-0 text-[13px] tabular-nums text-muted-foreground">
-              {room.areaSqft} sq ft
-            </span>
+          <li key={room.label} className="px-4 py-3 sm:px-5">
+            <div className="flex items-baseline justify-between gap-3">
+              <span className="min-w-0 text-[13.5px] font-medium">
+                {room.label}
+              </span>
+              <span className="shrink-0 text-[13px] tabular-nums text-muted-foreground">
+                {room.areaSqft} sq ft
+              </span>
+            </div>
+            <div className="mt-2 h-2 rounded-full bg-brand-soft" aria-hidden>
+              <div
+                className="h-full rounded-full bg-brand/80"
+                style={{
+                  width: `${Math.max(8, (room.areaSqft / largest) * 100)}%`,
+                }}
+              />
+            </div>
           </li>
         ))}
       </ul>

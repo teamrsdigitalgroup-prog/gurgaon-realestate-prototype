@@ -31,7 +31,7 @@ export function Hero({ broker }: { broker: Broker }) {
 
           <h1
             data-company
-            className="mt-5 text-[2.1rem] font-semibold leading-[1.08] sm:text-5xl lg:text-[3.4rem]"
+            className="mt-5 break-words text-[2rem] font-semibold leading-[1.08] sm:text-5xl lg:text-[3.4rem]"
           >
             {broker.name}
             <span className="mt-1 block text-brand">
@@ -51,7 +51,7 @@ export function Hero({ broker }: { broker: Broker }) {
               href="/buy"
               className={cn(
                 buttonVariants({ size: "lg" }),
-                "h-12 bg-brand px-6 text-brand-ink shadow-sm transition hover:bg-brand-strong",
+                "h-12 w-full bg-brand px-6 text-brand-ink shadow-sm transition hover:bg-brand-strong sm:w-auto",
               )}
             >
               Browse properties
@@ -62,7 +62,7 @@ export function Hero({ broker }: { broker: Broker }) {
                 href={broker.telUrl}
                 className={cn(
                   buttonVariants({ size: "lg", variant: "outline" }),
-                  "h-12 border-brand-border bg-background px-6 text-foreground hover:bg-brand-soft",
+                  "h-auto min-h-12 w-full max-w-full whitespace-normal border-brand-border bg-background px-6 py-3 text-center text-foreground hover:bg-brand-soft sm:w-auto",
                 )}
               >
                 <Phone className="size-4 text-brand" aria-hidden />
@@ -73,7 +73,7 @@ export function Hero({ broker }: { broker: Broker }) {
                 href="/contact"
                 className={cn(
                   buttonVariants({ size: "lg", variant: "outline" }),
-                  "h-12 border-brand-border bg-background px-6 text-foreground hover:bg-brand-soft",
+                  "h-auto min-h-12 w-full max-w-full whitespace-normal border-brand-border bg-background px-6 py-3 text-center text-foreground hover:bg-brand-soft sm:w-auto",
                 )}
               >
                 Talk to {broker.name}
