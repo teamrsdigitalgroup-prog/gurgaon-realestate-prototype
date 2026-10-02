@@ -3,8 +3,11 @@
  * Nothing else in the app hard-codes these values.
  */
 
-/** Your own WhatsApp number, used by the sticky "get your own website" banner. */
-export const AGENCY_WHATSAPP = "91XXXXXXXXXX";
+/**
+ * Your own WhatsApp number, used by the sticky "get your own website" banner.
+ * Includes the 91 country code because wa.me links require it.
+ */
+export const AGENCY_WHATSAPP = "918941962480";
 
 /** Your agency, shown in the demo banner and footer credit. */
 export const AGENCY_NAME = "R&S Digital Group";
