@@ -41,5 +41,20 @@
     "name": "Gupta and Gupta Property Consultant",
     "address": "271P, Sector 38, Gurgaon",
     "phone": "+919871919691"
+  },
+  "saluja-properties": {
+    "name": "Saluja Properties",
+    "address": "Shop No 2, Opposite HUDA Office, Delhi Gurgaon Road, Gurugram",
+    "phone": "+919810027579"
+  },
+  "chhabra-infravision": {
+    "name": "Chhabra Infravision Pvt Ltd",
+    "address": "P1/9, JCM Marg, DLF City Phase I, Gurugram",
+    "phone": "+919891929900"
+  },
+  "deep-associates": {
+    "name": "Deep Associates",
+    "address": "A-37, Vyapar Kendra, Palam Vihar, Gurugram",
+        "phone": "+919811022734"
   }
 }
