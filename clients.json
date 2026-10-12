@@ -61,5 +61,15 @@
     "name": "Nirupa Realty",
     "address": "A-122 First floor, Arcadia Market, South City II, Sector 49, Gurugram",
     "phone": "+918637899767"
+  },
+  "metro-real-estate": {
+    "name": "Metro Real Estate Consultant",
+    "address": "Office no-1, adjacent to Signature Infinity Mall, Sohna, Gurugram",
+    "phone": "+919873429797"
+  },
+  "unique-real-estate": {
+    "name": "Unique Real Estate",
+    "address": "H no 3445/23, Sector 23 Rd, Palam Vihar, Gurugram",
+    "phone": "+918744024627"
   }
 }
