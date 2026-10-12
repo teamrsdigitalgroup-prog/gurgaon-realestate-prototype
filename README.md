@@ -65,8 +65,8 @@ and a malformed colour falls back to the default brand colour.
 
 ## One deployment, one client per link
 
-`clients.json` at the repo root maps a short client id to a name, an address and
-a phone number:
+`clients.json` at the repo root maps a short client id to a name, an address, a
+phone number and an optional working-areas line:
 
 ```json
 {
@@ -95,6 +95,11 @@ Only `name` is required. A client with no `address` or `phone` — like
 `rawat-street` above — simply has those elements hidden: the Call and WhatsApp
 buttons and the office address disappear instead of falling back to another
 client's details, so a half-filled entry can never dial a competitor.
+
+An optional `areas` string is that client's working areas. When it is set, the
+hero, the localities intro, the “why us” markets card, the footer and the
+contact page use it in place of the default Gurgaon micro-markets copy. Clients
+without `areas` keep that original copy.
 
 ### Adding a client
 

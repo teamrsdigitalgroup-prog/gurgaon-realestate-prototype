@@ -36,10 +36,9 @@ export function Footer() {
               </div>
             </div>
             <p className="mt-5 max-w-sm text-sm leading-relaxed text-muted-foreground">
-              {broker.name} handles residential and commercial property across{" "}
-              {SITE_CITY} — from builder floors in DLF Phase 1 to golf-facing
-              apartments on Golf Course Road and new launches on Dwarka
-              Expressway.
+              {broker.areas
+                ? `${broker.name} handles residential and commercial property across ${broker.areas}.`
+                : `${broker.name} handles residential and commercial property across ${SITE_CITY} — from builder floors in DLF Phase 1 to golf-facing apartments on Golf Course Road and new launches on Dwarka Expressway.`}
             </p>
             {broker.telUrl && broker.whatsappUrl && (
               <div className="mt-6 flex flex-wrap gap-2">

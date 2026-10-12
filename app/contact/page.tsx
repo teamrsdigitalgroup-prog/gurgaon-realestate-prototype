@@ -34,32 +34,36 @@ const credentials = [
   },
 ];
 
-const faqs = [
-  {
-    question: "Do you charge buyers a brokerage fee?",
-    answer:
-      "Brokerage is one per cent of the transaction value for resale purchases, payable only at registry. For new launches the developer pays, so there is nothing for you to pay at all. Nothing is collected in advance either way.",
-  },
-  {
-    question: "How quickly can you arrange site visits?",
-    answer:
-      "Normally within 24 hours, and we plan the route so you see three or four properties in one trip rather than crossing Gurgaon twice. Weekend slots fill up by Thursday, so earlier notice helps.",
-  },
-  {
-    question: "Which localities do you actually cover?",
-    answer: `All ${localities.length} micro-markets listed on this site, from DLF Phases 1 to 5 and Golf Course Road through to Sector 82, Dwarka Expressway and Southern Peripheral Road. We will tell you honestly if your requirement sits outside the areas we know well.`,
-  },
-  {
-    question: "Can you help with home loans and paperwork?",
-    answer:
-      "Yes. We work with lenders directly for sanction letters, and handle the agreement to sell, the sub-registrar appointment, stamp duty calculation, TDS formalities and the mutation after registry.",
-  },
-  {
-    question: "Do you handle commercial property and plots?",
-    answer:
-      "We do. Office floor plates in Cyber City, high-street retail on MG Road and licensed plotted colonies in New Gurgaon are all part of what we transact regularly.",
-  },
-];
+function faqsFor(areas: string | undefined) {
+  return [
+    {
+      question: "Do you charge buyers a brokerage fee?",
+      answer:
+        "Brokerage is one per cent of the transaction value for resale purchases, payable only at registry. For new launches the developer pays, so there is nothing for you to pay at all. Nothing is collected in advance either way.",
+    },
+    {
+      question: "How quickly can you arrange site visits?",
+      answer:
+        "Normally within 24 hours, and we plan the route so you see three or four properties in one trip rather than crossing Gurgaon twice. Weekend slots fill up by Thursday, so earlier notice helps.",
+    },
+    {
+      question: "Which localities do you actually cover?",
+      answer: areas
+        ? `${areas}. We will tell you honestly if your requirement sits outside the areas we know well.`
+        : `All ${localities.length} micro-markets listed on this site, from DLF Phases 1 to 5 and Golf Course Road through to Sector 82, Dwarka Expressway and Southern Peripheral Road. We will tell you honestly if your requirement sits outside the areas we know well.`,
+    },
+    {
+      question: "Can you help with home loans and paperwork?",
+      answer:
+        "Yes. We work with lenders directly for sanction letters, and handle the agreement to sell, the sub-registrar appointment, stamp duty calculation, TDS formalities and the mutation after registry.",
+    },
+    {
+      question: "Do you handle commercial property and plots?",
+      answer:
+        "We do. Office floor plates in Cyber City, high-street retail on MG Road and licensed plotted colonies in New Gurgaon are all part of what we transact regularly.",
+    },
+  ];
+}
 
 export async function generateMetadata({
   searchParams,
@@ -75,6 +79,7 @@ export default async function ContactPage({
   searchParams,
 }: PageProps<"/contact">) {
   const broker = resolveBroker(await searchParams);
+  const faqs = faqsFor(broker.areas);
 
   return (
     <SiteShell broker={broker}>
@@ -94,12 +99,22 @@ export default async function ContactPage({
 
             <div className="mt-6 space-y-4 text-[15px] leading-relaxed text-muted-foreground">
               <p>
-                {broker.name} has been advising buyers, sellers and tenants
-                across {SITE_CITY} for over a decade. The practice covers{" "}
-                {localities.length} micro-markets and currently has{" "}
-                {allListings.length} active listings, from compact builder floors
-                in DLF Phase 3 to golf-facing apartments in DLF Phase 5 and
-                office floor plates in Cyber City.
+                {broker.areas ? (
+                  <>
+                    {broker.name} has been advising buyers, sellers and tenants
+                    across {broker.areas}. The practice currently has{" "}
+                    {allListings.length} active listings in those areas.
+                  </>
+                ) : (
+                  <>
+                    {broker.name} has been advising buyers, sellers and tenants
+                    across {SITE_CITY} for over a decade. The practice covers{" "}
+                    {localities.length} micro-markets and currently has{" "}
+                    {allListings.length} active listings, from compact builder
+                    floors in DLF Phase 3 to golf-facing apartments in DLF Phase
+                    5 and office floor plates in Cyber City.
+                  </>
+                )}
               </p>
               <p>
                 Most of the work is repeat business and referral. That only

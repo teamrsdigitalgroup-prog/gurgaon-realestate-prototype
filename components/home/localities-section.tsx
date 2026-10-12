@@ -3,8 +3,9 @@ import Image from "next/image";
 import { BrokerLink } from "@/components/broker/broker-link";
 import { Section, SectionHeading } from "@/components/section";
 import { localities, properties } from "@/data";
+import type { Broker } from "@/lib/broker";
 
-export function LocalitiesSection() {
+export function LocalitiesSection({ broker }: { broker: Broker }) {
   // These tiles link to /buy, so only count — and only show — localities that
   // actually have something for sale. Nobody should land on an empty grid.
   const saleCounts = new Map<string, number>();
@@ -21,7 +22,11 @@ export function LocalitiesSection() {
       <SectionHeading
         eyebrow="Where to look"
         title="Top Gurgaon localities"
-        description="Every micro-market in Gurgaon prices and behaves differently. Here is where we are currently active, and what each pocket is actually good for."
+        description={
+          broker.areas
+            ? `${broker.name} is currently active in ${broker.areas}.`
+            : "Every micro-market in Gurgaon prices and behaves differently. Here is where we are currently active, and what each pocket is actually good for."
+        }
         action={
           <BrokerLink
             href="/buy"

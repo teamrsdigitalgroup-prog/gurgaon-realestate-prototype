@@ -18,6 +18,8 @@ export type Broker = {
   initials: string;
   /** Office address, or undefined when this client has none on file. */
   address?: string;
+  /** Working areas, or undefined so pages keep the default micro-markets copy. */
+  areas?: string;
   /** 10 digits, no country code; undefined when this client has no number. */
   phone?: string;
   /** "+91 99999 99999" */
@@ -121,6 +123,7 @@ export function buildBroker(input: {
     // A name of pure punctuation yields no initials, so fall back to the default.
     initials: initialsOf(name) || initialsOf(DEFAULT_BROKER_NAME),
     address: client.address,
+    areas: client.areas,
     phone,
     phoneDisplay: phone ? formatPhone(phone) : undefined,
     color,

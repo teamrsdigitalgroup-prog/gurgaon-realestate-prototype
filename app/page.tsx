@@ -16,7 +16,7 @@ export async function generateMetadata({
   const broker = resolveBroker(await searchParams);
   return {
     title: `${broker.name} — Find Your Dream Property in ${SITE_CITY}`,
-    description: `${broker.name} helps you buy, sell and rent apartments, builder floors, villas and commercial property across ${SITE_CITY}.`,
+    description: `${broker.name} helps you buy, sell and rent apartments, builder floors, villas and commercial property across ${broker.areas ?? SITE_CITY}.`,
   };
 }
 
@@ -28,7 +28,7 @@ export default async function HomePage({ searchParams }: PageProps<"/">) {
       <Hero broker={broker} />
       <IntentCards />
       <FeaturedProperties broker={broker} />
-      <LocalitiesSection />
+      <LocalitiesSection broker={broker} />
       <WhyChooseUs broker={broker} />
       <Testimonials broker={broker} />
       <ContactStrip broker={broker} />

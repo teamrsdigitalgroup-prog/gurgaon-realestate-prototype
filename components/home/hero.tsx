@@ -40,10 +40,11 @@ export function Hero({ broker }: { broker: Broker }) {
           </h1>
 
           <p className="mt-5 max-w-xl text-[15px] leading-relaxed text-muted-foreground sm:text-base">
-            Apartments, builder floors, villas, plots and commercial space across
-            DLF Phases 1 to 5, Golf Course Road, Sohna Road, Dwarka Expressway
-            and ten more {SITE_CITY} micro-markets. One point of contact from the
-            first site visit to the registry.
+            Apartments, builder floors, villas, plots and commercial space across{" "}
+            {broker.areas
+              ? `${broker.areas}.`
+              : `DLF Phases 1 to 5, Golf Course Road, Sohna Road, Dwarka Expressway and ten more ${SITE_CITY} micro-markets.`}{" "}
+            One point of contact from the first site visit to the registry.
           </p>
 
           <div className="mt-7 flex flex-col gap-3 sm:flex-row">

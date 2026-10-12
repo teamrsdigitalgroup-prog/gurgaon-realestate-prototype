@@ -54,20 +54,28 @@ export function WhyChooseUs({ broker }: { broker: Broker }) {
 
       <ul className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3 lg:gap-6">
         {reasons.map((reason) => {
-          const Icon = reason.icon;
+          const item =
+            broker.areas && reason.title === "Fourteen micro-markets, properly known"
+              ? {
+                  ...reason,
+                  title: "The pockets we actually work",
+                  copy: `${broker.name} works across ${broker.areas}. Advice stays specific to those pockets, the society and the tower.`,
+                }
+              : reason;
+          const Icon = item.icon;
           return (
             <li
-              key={reason.title}
+              key={item.title}
               className="rounded-2xl border border-border bg-card p-6 transition-colors hover:border-brand-border"
             >
               <span className="grid size-11 place-items-center rounded-xl bg-brand-soft">
                 <Icon className="size-5 text-brand" aria-hidden />
               </span>
               <h3 className="mt-4 font-heading text-[17px] font-semibold leading-snug">
-                {reason.title}
+                {item.title}
               </h3>
               <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
-                {reason.copy}
+                {item.copy}
               </p>
             </li>
           );

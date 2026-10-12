@@ -19,9 +19,19 @@ export type Client = {
   address?: string;
   /** 10 local digits, no country code; undefined when the entry has none. */
   phone?: string;
+  /**
+   * Working areas, or undefined when clients.json has none. The page then
+   * keeps the default Gurgaon micro-markets copy.
+   */
+  areas?: string;
 };
 
-type ClientEntry = { name?: string; address?: string; phone?: string };
+type ClientEntry = {
+  name?: string;
+  address?: string;
+  phone?: string;
+  areas?: string;
+};
 
 const clients = clientsJson as Record<string, ClientEntry | undefined>;
 
@@ -46,6 +56,7 @@ function toClient(id: string, entry: ClientEntry): Client {
     name: text(entry.name) ?? DEFAULT_CLIENT_NAME,
     address: text(entry.address),
     phone: localPhone(entry.phone),
+    areas: text(entry.areas),
   };
 }
 
