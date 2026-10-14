@@ -77,5 +77,16 @@
     "name": "Prime Realtor Property",
     "address": "351, Basement, near Amazon Public School, Sector 56, Gurugram 122011",
     "phone": "+918860659024"
+  },
+  "new-gurgaon-propmart": {
+    "name": "New Gurgaon Propmart",
+    "address": "Shop 2, Omkar Shops on Main Sector Road, opp. Antriksh Heights, Sikandarpur Badha, New Gurgaon 122012",
+    "phone": "+919999484883"
+  },
+  "aaryan-estates": {
+    "name": "Aaryan Estates",
+    "address": "Shop 31, Pyramid Square, Sector 67A, Gurugram 122101",
+    "phone": "+918010030087",
+    "areas": "Sohna Road, Sector 67-70A, Gurugram"
   }
 }
