@@ -112,5 +112,26 @@
     "address": "181, Indira Colony 1, Sector 52 (Wazirabad), Gurugram 122003",
     "phone": "+919891571344",
     "areas": "Sector 52, Wazirabad, Golf Course Extension Road"
+  },
+  "shree-dwarkanath-estate": {
+    "name": "Shree Dwarkanath Estate",
+    "address": "T-5, Malhan Falcon Plaza, Plot 4, Pocket 7, near Metro Station, Sector 12 Dwarka, Delhi 110078",
+    "phone": "+917838883994",
+    "city": "Delhi",
+    "areas": "Dwarka Sec 12, Dwarka, West Delhi"
+  },
+  "shalimar-property": {
+    "name": "Shalimar Property",
+    "address": "Plot No 57, A-4, Sector 34, Rohini, Delhi 110039",
+    "phone": "+919718800544",
+    "city": "Delhi",
+    "areas": "Rohini Sec 34, Rohini, North-West Delhi"
+  },
+  "property-homes": {
+    "name": "Property Homes",
+    "address": "Tower G2, Golf City, Plot 11, behind Spectrum Metro Mall, Sector 75, Noida 201316",
+    "phone": "+917599093099",
+    "city": "Noida",
+    "areas": "Sector 75, Noida Expressway side, Noida"
   }
 }

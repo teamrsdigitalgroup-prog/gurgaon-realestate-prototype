@@ -11,7 +11,6 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import { SITE_CITY } from "@/config";
 import { allListings, localities } from "@/data";
 import { photo } from "@/lib/images";
 import { pageTitle, resolveBroker } from "@/lib/broker";
@@ -34,7 +33,7 @@ const credentials = [
   },
 ];
 
-function faqsFor(areas: string | undefined) {
+function faqsFor(areas: string | undefined, city: string) {
   return [
     {
       question: "Do you charge buyers a brokerage fee?",
@@ -43,8 +42,7 @@ function faqsFor(areas: string | undefined) {
     },
     {
       question: "How quickly can you arrange site visits?",
-      answer:
-        "Normally within 24 hours, and we plan the route so you see three or four properties in one trip rather than crossing Gurgaon twice. Weekend slots fill up by Thursday, so earlier notice helps.",
+      answer: `Normally within 24 hours, and we plan the route so you see three or four properties in one trip rather than crossing ${city} twice. Weekend slots fill up by Thursday, so earlier notice helps.`,
     },
     {
       question: "Which localities do you actually cover?",
@@ -60,7 +58,7 @@ function faqsFor(areas: string | undefined) {
     {
       question: "Do you handle commercial property and plots?",
       answer:
-        "We do. Office floor plates in Cyber City, high-street retail on MG Road and licensed plotted colonies in New Gurgaon are all part of what we transact regularly.",
+        `We do. Office floor plates in Cyber City, high-street retail on MG Road and licensed plotted colonies in New ${city} are all part of what we transact regularly.`,
     },
   ];
 }
@@ -71,7 +69,7 @@ export async function generateMetadata({
   const broker = resolveBroker(await searchParams);
   return {
     title: pageTitle(broker, `About & Contact`),
-    description: `Talk to ${broker.name} about buying, selling or renting property in ${SITE_CITY}. Call, WhatsApp or request a callback.`,
+    description: `Talk to ${broker.name} about buying, selling or renting property in ${broker.city}. Call, WhatsApp or request a callback.`,
   };
 }
 
@@ -79,14 +77,14 @@ export default async function ContactPage({
   searchParams,
 }: PageProps<"/contact">) {
   const broker = resolveBroker(await searchParams);
-  const faqs = faqsFor(broker.areas);
+  const faqs = faqsFor(broker.areas, broker.city);
 
   return (
     <SiteShell broker={broker}>
       <PageHeader
         eyebrow="About & contact"
         title={`About ${broker.name}`}
-        description={`A ${SITE_CITY} property practice built on knowing a small number of micro-markets extremely well, rather than claiming to cover the whole NCR.`}
+        description={`A ${broker.city} property practice built on knowing a small number of micro-markets extremely well, rather than claiming to cover the whole NCR.`}
       />
 
       <Section>
@@ -94,7 +92,7 @@ export default async function ContactPage({
           <div>
             <SectionHeading
               eyebrow="Who we are"
-              title={`Property advice in ${SITE_CITY}, without the noise`}
+              title={`Property advice in ${broker.city}, without the noise`}
             />
 
             <div className="mt-6 space-y-4 text-[15px] leading-relaxed text-muted-foreground">
@@ -108,7 +106,7 @@ export default async function ContactPage({
                 ) : (
                   <>
                     {broker.name} has been advising buyers, sellers and tenants
-                    across {SITE_CITY} for over a decade. The practice covers{" "}
+                    across {broker.city} for over a decade. The practice covers{" "}
                     {localities.length} micro-markets and currently has{" "}
                     {allListings.length} active listings, from compact builder
                     floors in DLF Phase 3 to golf-facing apartments in DLF Phase
@@ -164,7 +162,7 @@ export default async function ContactPage({
             <div className="relative aspect-[4/3] overflow-hidden rounded-2xl shadow-xl sm:aspect-[5/4]">
               <Image
                 src={photo("photo-1497366754035-f200968a6e72", 1000, 800)}
-                alt={`The ${broker.name} office in ${SITE_CITY}`}
+                alt={`The ${broker.name} office in ${broker.city}`}
                 fill
                 sizes="(max-width: 1024px) 100vw, 45vw"
                 className="object-cover"

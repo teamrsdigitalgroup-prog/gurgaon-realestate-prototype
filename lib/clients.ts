@@ -24,6 +24,10 @@ export type Client = {
    * keeps the default Gurgaon micro-markets copy.
    */
   areas?: string;
+  /**
+   * City used in the page chrome, or undefined so the page stays on Gurgaon.
+   */
+  city?: string;
 };
 
 type ClientEntry = {
@@ -31,6 +35,7 @@ type ClientEntry = {
   address?: string;
   phone?: string;
   areas?: string;
+  city?: string;
 };
 
 const clients = clientsJson as Record<string, ClientEntry | undefined>;
@@ -57,6 +62,7 @@ function toClient(id: string, entry: ClientEntry): Client {
     address: text(entry.address),
     phone: localPhone(entry.phone),
     areas: text(entry.areas),
+    city: text(entry.city),
   };
 }
 

@@ -6,7 +6,6 @@ import { allListings, localities } from "@/data";
 import { photo } from "@/lib/images";
 import { cn } from "@/lib/utils";
 import type { Broker } from "@/lib/broker";
-import { SITE_CITY } from "@/config";
 
 const stats = [
   { value: `${allListings.length}`, label: "Live listings" },
@@ -26,7 +25,7 @@ export function Hero({ broker }: { broker: Broker }) {
         <div className="animate-fade-up">
           <p className="inline-flex items-center gap-2 rounded-full border border-brand-border bg-background/70 px-3 py-1.5 text-[11.5px] font-semibold uppercase tracking-[0.12em] text-brand backdrop-blur">
             <BadgeCheck className="size-3.5" aria-hidden />
-            RERA-verified listings in {SITE_CITY}
+            RERA-verified listings in {broker.city}
           </p>
 
           <h1
@@ -35,7 +34,7 @@ export function Hero({ broker }: { broker: Broker }) {
           >
             {broker.name}
             <span className="mt-1 block text-brand">
-              Find Your Dream Property in {SITE_CITY}
+              Find Your Dream Property in {broker.city}
             </span>
           </h1>
 
@@ -43,7 +42,7 @@ export function Hero({ broker }: { broker: Broker }) {
             Apartments, builder floors, villas, plots and commercial space across{" "}
             {broker.areas
               ? `${broker.areas}.`
-              : `DLF Phases 1 to 5, Golf Course Road, Sohna Road, Dwarka Expressway and ten more ${SITE_CITY} micro-markets.`}{" "}
+              : `DLF Phases 1 to 5, Golf Course Road, Sohna Road, Dwarka Expressway and ten more ${broker.city} micro-markets.`}{" "}
             One point of contact from the first site visit to the registry.
           </p>
 
@@ -103,7 +102,7 @@ export function Hero({ broker }: { broker: Broker }) {
           <div className="relative aspect-[4/5] overflow-hidden rounded-3xl shadow-[0_30px_70px_-40px_rgba(15,23,42,0.5)] sm:aspect-[5/4] lg:aspect-[4/5]">
             <Image
               src={photo("photo-1512917774080-9991f1c4c750", 1100, 1300)}
-              alt={`Residential property represented by ${broker.name} in ${SITE_CITY}`}
+              alt={`Residential property represented by ${broker.name} in ${broker.city}`}
               fill
               priority
               sizes="(max-width: 1024px) 100vw, 45vw"

@@ -5,7 +5,6 @@ import { ContactActions } from "@/components/property/contact-actions";
 import { ListingFilters } from "@/components/property/listing-filters";
 import { RentalCard } from "@/components/property/rental-card";
 import { SiteShell } from "@/components/layout/site-shell";
-import { SITE_CITY } from "@/config";
 import { propertyTypes, rentals } from "@/data";
 import { pageTitle, resolveBroker } from "@/lib/broker";
 import { applyFilters, parseFilters, sortListings, type SortKey } from "@/lib/filters";
@@ -22,8 +21,8 @@ export async function generateMetadata({
 }: PageProps<"/rent">): Promise<Metadata> {
   const broker = resolveBroker(await searchParams);
   return {
-    title: pageTitle(broker, `Rent a Home in ${SITE_CITY}`),
-    description: `${rentals.length} furnished and unfurnished homes for rent across ${SITE_CITY}, with monthly rent, deposit and nearby metro, schools and hospitals listed by ${broker.name}.`,
+    title: pageTitle(broker, `Rent a Home in ${broker.city}`),
+    description: `${rentals.length} furnished and unfurnished homes for rent across ${broker.city}, with monthly rent, deposit and nearby metro, schools and hospitals listed by ${broker.name}.`,
   };
 }
 
@@ -39,7 +38,7 @@ export default async function RentPage({ searchParams }: PageProps<"/rent">) {
     <SiteShell broker={broker}>
       <PageHeader
         eyebrow={`${rentals.length} homes available now`}
-        title={`Rent a home in ${SITE_CITY} with ${broker.name}`}
+        title={`Rent a home in ${broker.city} with ${broker.name}`}
         description="Monthly rent, security deposit and maintenance are stated upfront on every listing, along with the distance to the nearest metro station, schools, hospitals and malls."
       />
 
@@ -67,7 +66,7 @@ export default async function RentPage({ searchParams }: PageProps<"/rent">) {
             </p>
             <ContactActions
               className="mt-6 w-full sm:max-w-md"
-              context={`a rental in ${SITE_CITY}`}
+              context={`a rental in ${broker.city}`}
             />
           </div>
         ) : (
@@ -82,7 +81,7 @@ export default async function RentPage({ searchParams }: PageProps<"/rent">) {
 
         <aside className="mt-12 rounded-2xl border border-brand-border bg-brand-soft p-6 sm:p-8">
           <h2 className="font-heading text-xl font-semibold sm:text-2xl">
-            Relocating to {SITE_CITY} on short notice?
+            Relocating to {broker.city} on short notice?
           </h2>
           <p className="mt-2 max-w-2xl text-sm leading-relaxed text-muted-foreground">
             {broker.name} arranges four or five viewings in a single afternoon,
@@ -91,7 +90,7 @@ export default async function RentPage({ searchParams }: PageProps<"/rent">) {
           </p>
           <ContactActions
             className="mt-5 sm:max-w-md"
-            context={`a rental in ${SITE_CITY}`}
+            context={`a rental in ${broker.city}`}
           />
         </aside>
       </div>

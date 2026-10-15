@@ -21,11 +21,11 @@ export function LocalitiesSection({ broker }: { broker: Broker }) {
     <Section tone="soft" id="localities">
       <SectionHeading
         eyebrow="Where to look"
-        title="Top Gurgaon localities"
+        title={`Top ${broker.city} localities`}
         description={
           broker.areas
             ? `${broker.name} is currently active in ${broker.areas}.`
-            : "Every micro-market in Gurgaon prices and behaves differently. Here is where we are currently active, and what each pocket is actually good for."
+            : `Every micro-market in ${broker.city} prices and behaves differently. Here is where we are currently active, and what each pocket is actually good for.`
         }
         action={
           <BrokerLink
@@ -63,7 +63,7 @@ export function LocalitiesSection({ broker }: { broker: Broker }) {
                     {locality.name}
                   </span>
                   <span className="mt-0.5 block text-[12.5px] leading-snug text-white/75">
-                    {locality.tagline}
+                    {locality.tagline.replaceAll("Gurgaon", broker.city)}
                   </span>
                   <span className="mt-3 flex items-center justify-between text-[11.5px] font-medium text-white/90">
                     <span>

@@ -7,7 +7,6 @@ import { LocalitiesSection } from "@/components/home/localities-section";
 import { Testimonials } from "@/components/home/testimonials";
 import { WhyChooseUs } from "@/components/home/why-choose-us";
 import { SiteShell } from "@/components/layout/site-shell";
-import { SITE_CITY } from "@/config";
 import { resolveBroker } from "@/lib/broker";
 
 export async function generateMetadata({
@@ -15,8 +14,8 @@ export async function generateMetadata({
 }: PageProps<"/">): Promise<Metadata> {
   const broker = resolveBroker(await searchParams);
   return {
-    title: `${broker.name} — Find Your Dream Property in ${SITE_CITY}`,
-    description: `${broker.name} helps you buy, sell and rent apartments, builder floors, villas and commercial property across ${broker.areas ?? SITE_CITY}.`,
+    title: `${broker.name} — Find Your Dream Property in ${broker.city}`,
+    description: `${broker.name} helps you buy, sell and rent apartments, builder floors, villas and commercial property across ${broker.areas ?? broker.city}.`,
   };
 }
 
@@ -26,7 +25,7 @@ export default async function HomePage({ searchParams }: PageProps<"/">) {
   return (
     <SiteShell broker={broker}>
       <Hero broker={broker} />
-      <IntentCards />
+      <IntentCards broker={broker} />
       <FeaturedProperties broker={broker} />
       <LocalitiesSection broker={broker} />
       <WhyChooseUs broker={broker} />

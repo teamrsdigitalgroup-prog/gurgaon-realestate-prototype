@@ -15,8 +15,8 @@ export const AGENCY_WHATSAPP = "918941962480";
 export const AGENCY_NAME = "R&S Digital Group";
 
 /**
- * Name, address, phone and optional working areas all come from clients.json:
- * the "default" entry, or whichever one `?c=<client-id>` selects. A `?broker=`
+ * Name, address, phone, optional working areas and optional city all come from
+ * clients.json: the "default" entry, or whichever one `?c=<client-id>` selects. A `?broker=`
  * or `?phone=` parameter in the URL still overrides whichever client is in play.
  */
 export const DEFAULT_BROKER_NAME = DEFAULT_CLIENT_NAME;

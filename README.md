@@ -101,6 +101,10 @@ hero, the localities intro, the “why us” markets card, the footer and the
 contact page use it in place of the default Gurgaon micro-markets copy. Clients
 without `areas` keep that original copy.
 
+An optional `city` replaces Gurgaon in the page chrome — titles, hero, nav,
+footer and the same city phrases. Clients without `city` stay on Gurgaon, so
+those pages render as before.
+
 ### Adding a client
 
 1. Add one entry to `clients.json`. The id is the name in lowercase with

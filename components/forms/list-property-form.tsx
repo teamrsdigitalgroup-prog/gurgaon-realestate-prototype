@@ -90,7 +90,7 @@ export function ListPropertyForm() {
         </h3>
         <p className="mx-auto mt-3 max-w-md text-sm leading-relaxed text-muted-foreground">
           Thanks {values.name.split(" ")[0]}. We have your {values.type} in{" "}
-          {locality?.name ?? "Gurgaon"} at an expected {values.price}
+          {locality?.name ?? broker.city} at an expected {values.price}
           {photos.length > 0
             ? `, along with ${photos.length} ${photos.length === 1 ? "photo" : "photos"}`
             : ""}

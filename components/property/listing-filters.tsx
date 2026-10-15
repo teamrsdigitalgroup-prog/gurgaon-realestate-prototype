@@ -3,6 +3,7 @@
 import { Search, SlidersHorizontal, X } from "lucide-react";
 import { usePathname, useRouter } from "next/navigation";
 import { useState, useTransition } from "react";
+import { useBroker } from "@/components/broker/broker-provider";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -47,6 +48,7 @@ export function ListingFilters({
   resultCount: number;
   totalCount: number;
 }) {
+  const broker = useBroker();
   const router = useRouter();
   const pathname = usePathname();
   const [isPending, startTransition] = useTransition();
@@ -158,7 +160,7 @@ export function ListingFilters({
           value={values.locality || ALL}
           onChange={(value) => commit({ locality: value })}
           options={[
-            { value: ALL, label: "All Gurgaon" },
+            { value: ALL, label: `All ${broker.city}` },
             ...localities.map((l) => ({ value: l.slug, label: l.name })),
           ]}
         />

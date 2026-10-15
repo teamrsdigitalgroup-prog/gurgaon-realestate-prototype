@@ -1,6 +1,5 @@
 import { Clock, MapPin, MessageCircle, Phone } from "lucide-react";
 import { EnquiryForm } from "@/components/forms/enquiry-form";
-import { SITE_CITY } from "@/config";
 import type { Broker } from "@/lib/broker";
 
 export function ContactStrip({ broker }: { broker: Broker }) {
@@ -90,7 +89,7 @@ export function ContactStrip({ broker }: { broker: Broker }) {
                   Office hours
                 </dt>
                 <dd className="text-[15px] font-medium">
-                  Mon – Sat, 10:00 – 19:00 · {SITE_CITY}
+                  Mon – Sat, 10:00 – 19:00 · {broker.city}
                 </dd>
               </div>
             </div>

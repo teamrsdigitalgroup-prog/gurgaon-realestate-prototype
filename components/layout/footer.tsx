@@ -5,7 +5,7 @@ import { BrokerLink } from "@/components/broker/broker-link";
 import { BrokerLogo } from "@/components/broker/broker-logo";
 import { useBroker } from "@/components/broker/broker-provider";
 import { localities } from "@/data/localities";
-import { AGENCY_NAME, SITE_CITY } from "@/config";
+import { AGENCY_NAME } from "@/config";
 
 const services = [
   { href: "/buy", label: "Buy a property" },
@@ -31,14 +31,14 @@ export function Footer() {
                   {broker.name}
                 </p>
                 <p className="text-xs font-medium uppercase tracking-[0.14em] text-muted-foreground">
-                  Real Estate, {SITE_CITY}
+                  Real Estate, {broker.city}
                 </p>
               </div>
             </div>
             <p className="mt-5 max-w-sm text-sm leading-relaxed text-muted-foreground">
               {broker.areas
                 ? `${broker.name} handles residential and commercial property across ${broker.areas}.`
-                : `${broker.name} handles residential and commercial property across ${SITE_CITY} — from builder floors in DLF Phase 1 to golf-facing apartments on Golf Course Road and new launches on Dwarka Expressway.`}
+                : `${broker.name} handles residential and commercial property across ${broker.city} — from builder floors in DLF Phase 1 to golf-facing apartments on Golf Course Road and new launches on Dwarka Expressway.`}
             </p>
             {broker.telUrl && broker.whatsappUrl && (
               <div className="mt-6 flex flex-wrap gap-2">

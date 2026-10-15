@@ -4,7 +4,6 @@ import { ContactActions } from "@/components/property/contact-actions";
 import { ListingFilters } from "@/components/property/listing-filters";
 import { PropertyGrid } from "@/components/property/property-grid";
 import { SiteShell } from "@/components/layout/site-shell";
-import { SITE_CITY } from "@/config";
 import { properties, propertyTypes } from "@/data";
 import { pageTitle, resolveBroker } from "@/lib/broker";
 import { applyFilters, parseFilters, sortListings, type SortKey } from "@/lib/filters";
@@ -21,8 +20,8 @@ export async function generateMetadata({
 }: PageProps<"/buy">): Promise<Metadata> {
   const broker = resolveBroker(await searchParams);
   return {
-    title: pageTitle(broker, `Buy Property in ${SITE_CITY}`),
-    description: `${properties.length} verified apartments, builder floors, villas, plots and commercial properties for sale across ${SITE_CITY}, listed by ${broker.name}.`,
+    title: pageTitle(broker, `Buy Property in ${broker.city}`),
+    description: `${properties.length} verified apartments, builder floors, villas, plots and commercial properties for sale across ${broker.city}, listed by ${broker.name}.`,
   };
 }
 
@@ -38,7 +37,7 @@ export default async function BuyPage({ searchParams }: PageProps<"/buy">) {
     <SiteShell broker={broker}>
       <PageHeader
         eyebrow={`${properties.length} properties for sale`}
-        title={`Buy property in ${SITE_CITY} with ${broker.name}`}
+        title={`Buy property in ${broker.city} with ${broker.name}`}
         description={`Every listing below was inspected in person, with title, sanction plan and HRERA registration checked before it went live. Filter by locality, budget, bedrooms or property type.`}
       />
 
@@ -55,7 +54,7 @@ export default async function BuyPage({ searchParams }: PageProps<"/buy">) {
         <div className="mt-8">
           <PropertyGrid
             listings={matches}
-            action={<ContactActions context={`a property in ${SITE_CITY}`} />}
+            action={<ContactActions context={`a property in ${broker.city}`} />}
           />
         </div>
 
@@ -70,7 +69,7 @@ export default async function BuyPage({ searchParams }: PageProps<"/buy">) {
           </p>
           <ContactActions
             className="mt-5 sm:max-w-md"
-            context={`off-market properties in ${SITE_CITY}`}
+            context={`off-market properties in ${broker.city}`}
           />
         </aside>
       </div>

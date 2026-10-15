@@ -1,6 +1,7 @@
 import { ArrowUpRight, Home, KeyRound, Tag } from "lucide-react";
 import { BrokerLink } from "@/components/broker/broker-link";
 import { properties, rentals } from "@/data";
+import type { Broker } from "@/lib/broker";
 
 const intents = [
   {
@@ -29,7 +30,7 @@ const intents = [
   },
 ] as const;
 
-export function IntentCards() {
+export function IntentCards({ broker }: { broker: Broker }) {
   return (
     <section className="mx-auto max-w-7xl px-4 py-14 sm:px-6 sm:py-18 lg:px-8 lg:py-20">
       <div className="grid gap-4 md:grid-cols-3 lg:gap-6">
@@ -53,7 +54,7 @@ export function IntentCards() {
                 {intent.label}
               </p>
               <h3 className="relative mt-1.5 font-heading text-xl font-semibold sm:text-2xl">
-                {intent.headline}
+                {intent.headline.replaceAll("Gurgaon", broker.city)}
               </h3>
               <p className="relative mt-3 flex-1 text-sm leading-relaxed text-muted-foreground">
                 {intent.copy}

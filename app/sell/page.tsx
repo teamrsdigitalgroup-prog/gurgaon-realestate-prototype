@@ -5,7 +5,6 @@ import { PageHeader } from "@/components/page-header";
 import { ListPropertyForm } from "@/components/forms/list-property-form";
 import { SiteShell } from "@/components/layout/site-shell";
 import { Section, SectionHeading } from "@/components/section";
-import { SITE_CITY } from "@/config";
 import { localityName, recentlySold } from "@/data";
 import { formatArea, formatPrice, formatRent } from "@/lib/format";
 import { pageTitle, resolveBroker } from "@/lib/broker";
@@ -38,8 +37,8 @@ export async function generateMetadata({
 }: PageProps<"/sell">): Promise<Metadata> {
   const broker = resolveBroker(await searchParams);
   return {
-    title: pageTitle(broker, `Sell Your Property in ${SITE_CITY}`),
-    description: `List your ${SITE_CITY} apartment, builder floor, villa or plot with ${broker.name}. Free valuation, professional photography and no fee until it sells.`,
+    title: pageTitle(broker, `Sell Your Property in ${broker.city}`),
+    description: `List your ${broker.city} apartment, builder floor, villa or plot with ${broker.name}. Free valuation, professional photography and no fee until it sells.`,
   };
 }
 

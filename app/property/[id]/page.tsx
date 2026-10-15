@@ -162,7 +162,7 @@ export default async function PropertyPage({
               {listing.title}
             </h1>
             <p className="mt-2 text-[15px] text-muted-foreground">
-              {listing.society}, {locality}, Gurgaon
+              {listing.society}, {locality}, {broker.city}
             </p>
           </div>
 
@@ -283,7 +283,11 @@ export default async function PropertyPage({
                 Location and what is nearby
               </h2>
               <div className="mt-4">
-                <MapPlaceholder society={listing.society} locality={locality} />
+                <MapPlaceholder
+                  society={listing.society}
+                  locality={locality}
+                  city={broker.city}
+                />
               </div>
               <div className="mt-4">
                 <NearbyPlaces places={listing.nearby} />

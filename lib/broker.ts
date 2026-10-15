@@ -1,4 +1,4 @@
-import { DEFAULT_BRAND_COLOR, DEFAULT_BROKER_NAME } from "@/config";
+import { DEFAULT_BRAND_COLOR, DEFAULT_BROKER_NAME, SITE_CITY } from "@/config";
 import {
   CLIENT_PARAM,
   DEFAULT_CLIENT_ID,
@@ -20,6 +20,8 @@ export type Broker = {
   address?: string;
   /** Working areas, or undefined so pages keep the default micro-markets copy. */
   areas?: string;
+  /** Page city. Gurgaon when the client entry has no city. */
+  city: string;
   /** 10 digits, no country code; undefined when this client has no number. */
   phone?: string;
   /** "+91 99999 99999" */
@@ -107,6 +109,7 @@ export function buildBroker(input: {
   const overridePhone = localPhone(input.phone);
   const phone = overridePhone ?? client.phone;
   const color = normalizeColor(input.color);
+  const city = client.city ?? SITE_CITY;
 
   const params = new URLSearchParams();
   if (client.id !== DEFAULT_CLIENT_ID) params.set(CLIENT_PARAM, client.id);
@@ -114,7 +117,7 @@ export function buildBroker(input: {
   if (overridePhone) params.set("phone", overridePhone);
   if (color !== DEFAULT_BRAND_COLOR) params.set("color", color);
 
-  const message = `Hi ${name}, I found your website and I'm interested in a property in Gurgaon.`;
+  const message = `Hi ${name}, I found your website and I'm interested in a property in ${city}.`;
 
   return {
     client,
@@ -124,6 +127,7 @@ export function buildBroker(input: {
     initials: initialsOf(name) || initialsOf(DEFAULT_BROKER_NAME),
     address: client.address,
     areas: client.areas,
+    city,
     phone,
     phoneDisplay: phone ? formatPhone(phone) : undefined,
     color,

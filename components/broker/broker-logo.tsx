@@ -42,7 +42,7 @@ export function BrokerLogo({
 export function BrokerWordmark({
   broker,
   className,
-  subtitle = "Real Estate, Gurgaon",
+  subtitle = `Real Estate, ${broker.city}`,
 }: {
   broker: Broker;
   className?: string;

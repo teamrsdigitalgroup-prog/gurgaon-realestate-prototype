@@ -3,9 +3,11 @@ import { MapPin, Navigation } from "lucide-react";
 export function MapPlaceholder({
   society,
   locality,
+  city = "Gurgaon",
 }: {
   society: string;
   locality: string;
+  city?: string;
 }) {
   return (
     <div className="relative overflow-hidden rounded-2xl border border-border bg-brand-tint">
@@ -34,7 +36,7 @@ export function MapPlaceholder({
           <span className="absolute inset-0 animate-ping rounded-full bg-brand/40" />
         </span>
         <p className="mt-4 font-heading text-base font-semibold">{society}</p>
-        <p className="text-sm text-muted-foreground">{locality}, Gurgaon</p>
+        <p className="text-sm text-muted-foreground">{locality}, {city}</p>
         <p className="mt-4 inline-flex items-center gap-1.5 rounded-full border border-brand-border bg-background/80 px-3 py-1.5 text-xs text-muted-foreground backdrop-blur">
           <Navigation className="size-3.5 text-brand" aria-hidden />
           Interactive map and exact pin shared before the site visit

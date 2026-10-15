@@ -48,7 +48,7 @@ export function WhyChooseUs({ broker }: { broker: Broker }) {
       <SectionHeading
         eyebrow="Why work with us"
         title={`Six reasons clients stay with ${broker.name}`}
-        description="Buying property in Gurgaon is mostly an exercise in filtering out noise. This is how that is done."
+        description={`Buying property in ${broker.city} is mostly an exercise in filtering out noise. This is how that is done.`}
         align="center"
       />
 
@@ -75,7 +75,7 @@ export function WhyChooseUs({ broker }: { broker: Broker }) {
                 {item.title}
               </h3>
               <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
-                {item.copy}
+                {item.copy.replaceAll("Gurgaon", broker.city)}
               </p>
             </li>
           );
