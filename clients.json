@@ -145,5 +145,19 @@
     "address": "Sector 36, Sohna 122103",
     "phone": "+919034274661",
     "city": "Gurgaon"
+  },
+  "sync-realtors": {
+    "name": "Sync Realtors Pvt Ltd",
+    "address": "Farrukhnagar, Gurugram 122506",
+    "phone": "+919991982132",
+    "city": "Gurugram",
+    "areas": "Farrukhnagar, Gurugram"
+  },
+  "shri-shri-goverdhan-properties": {
+    "name": "Shri Shri Goverdhan Properties",
+    "address": "U-187, Gali No. 5, Metro Pillar 31, near Kotak Bank, Laxmi Nagar (Shakarpur), Delhi 110092",
+    "phone": "+919773601965",
+    "city": "Delhi",
+    "areas": "Laxmi Nagar"
   }
 }
