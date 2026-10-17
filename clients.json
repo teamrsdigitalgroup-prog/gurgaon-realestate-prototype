@@ -133,5 +133,17 @@
     "phone": "+917599093099",
     "city": "Noida",
     "areas": "Sector 75, Noida Expressway side, Noida"
+  },
+  "starone-associates": {
+    "name": "STARONE Associates",
+    "address": "K-3A, B1 Road, B2A Block, Janakpuri, Delhi 110058",
+    "phone": "+919718766971",
+    "city": "Delhi"
+  },
+  "sohna-road-properties": {
+    "name": "Sohna Road Properties",
+    "address": "Sector 36, Sohna 122103",
+    "phone": "+919034274661",
+    "city": "Gurgaon"
   }
 }
