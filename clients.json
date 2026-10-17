@@ -159,5 +159,12 @@
     "phone": "+919773601965",
     "city": "Delhi",
     "areas": "Laxmi Nagar"
+  },
+  "kalra-associates": {
+    "name": "Kalra Associates",
+    "address": "First Floor, GG2/11B, DDA Market, J Block Rd, Block GG2, Vikaspuri, Delhi 110018",
+    "phone": "+919868060238",
+    "city": "Delhi",
+    "areas": "Vikaspuri"
   }
 }
