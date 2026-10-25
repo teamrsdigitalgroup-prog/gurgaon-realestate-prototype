@@ -166,5 +166,11 @@
     "phone": "+919868060238",
     "city": "Delhi",
     "areas": "Vikaspuri"
+  },
+  "yuvan-estate": {
+    "name": "Yuvan Estate",
+    "address": "Shop SF/10, Grand Iva Signature Global, Signum 103, Sector 103, Gurugram",
+    "phone": "+918477843693",
+    "city": "Gurgaon"
   }
 }
